@@ -991,7 +991,7 @@
                             <div class="slide-item" v-for="item in productData.relatedData">
                                 <div class="single_product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <a @click="Jump(item.test)">
                                             <img class="primary-img" src="assets/images/product/medium-size/1-9.jpg" alt="Hiraola's Product Image">
                                             <img class="secondary-img" src="assets/images/product/medium-size/1-1.jpg" alt="Hiraola's Product Image">
                                         </a>
@@ -1438,7 +1438,11 @@
                 addWishlist(){
                     var data = {}
                     data.id = this.productData.productId;
-                }
+                },
+                Jump(data){
+                    window.location.href = "single-product.html?name="+this.username+"&productname="+data;
+                },
+
             }
         })
     </script>
