@@ -218,19 +218,18 @@
                         </div>
                         <div class="tab-content hiraola-tab_content">
                             <div id="chart" class="tab-pane active show" role="tabpanel">
-                                <div class="product-description">
+                                <div>
                                     <ul>
-                                        <li class="chart-message">
-                                            <div class="chartimg">
-                                                <div class="checkboxnew">
-                                                    <label>
-                                                        <input type="checkbox">
-                                                    </label>
-                                                </div>
-                                                <img src="assets\images\userinfo\1.jpg" class="checkboximg"></img>
+                                        <li :class="{'chart-message':true,'selected':item.selected}"
+                                            v-for="item,index in cartData"
+                                            style="height: 250px;padding-top: 10px">
+
+                                            <div class="chartimg" style="margin-left: 20px">
+
+                                                <img src="assets\images\userinfo\1.jpg" class="checkboximg" @click="choose(index)"/>
                                             </div>
 
-                                            <div class="chartinfo">
+                                            <div class="chartinfo" style="padding: 10px 10px">
                                                 <strong>《书籍名称》</strong>
                                                 <span>书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍</span>
                                                 <br><br>
@@ -242,14 +241,15 @@
                                                             <lable style="color: #595959; font-weight:bold;float:left">
                                                                 数量：
                                                             </lable>
-                                                            <div class="cart-plus-minus">
-                                                                <input class="cart-plus-minus-box" value="1"
-                                                                       type="text">
-                                                                <div class="dec qtybutton"><i
-                                                                        class="fa fa-angle-down"></i></div>
-                                                                <div class="inc qtybutton"><i
-                                                                        class="fa fa-angle-up"></i></div>
-                                                            </div>
+                                                            <el-input-number size="mini" v-model="item.num"></el-input-number>
+<!--                                                            <div class="cart-plus-minus">-->
+<!--                                                                <input class="cart-plus-minus-box" value="1"-->
+<!--                                                                       type="text">-->
+<!--                                                                <div class="dec qtybutton"><i-->
+<!--                                                                        class="fa fa-angle-down"></i></div>-->
+<!--                                                                <div class="inc qtybutton"><i-->
+<!--                                                                        class="fa fa-angle-up"></i></div>-->
+<!--                                                            </div>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -558,35 +558,60 @@
     new Vue({
         el: '#app',
         data: {
-            formDate:"",
+            formDate: "",
             dialogImageUrl: '',
             dialogVisible: false,
             site: "菜鸟教程",
             url: "www.runoob.com",
             alexa: "10000",
-            recommend: [
+            cartData: [
                 {
-                    test: "wanyine"
+                    test: 1,
+                    selected: true,
+                    num:1,
                 },
                 {
-                    test: "wanyine"
+                    test: 1,
+                    selected: false,
+                    num:1,
                 },
                 {
-                    test: "wanyine"
+                    test: 1,
+                    selected: false,
+                    num:1,
                 },
                 {
-                    test: "wanyine"
-                }
-            ]
+                    test: 1,
+                    selected: false,
+                    num:1,
+                },
+                {
+                    test: 1,
+                    selected: false,
+                    num:1,
+                },
+                {
+                    test: 1,
+                    selected: false,
+                    num:1,
+                },
+            ],
         },
         created() {
             console.log("test");
         },
         methods: {
-            uploadFile(file){
+            choose(id) {
+                if (this.cartData[id].selected == true) {
+                    this.cartData[id].selected = false;
+                } else {
+                    this.cartData[id].selected = true;
+                }
+            },
+            uploadFile(file) {
                 this.formDate.append('file', file.file);
             },
-            subPicForm(){
+            subPicForm() {
                 this.formDate = new FormData()
                 this.$refs.upload.submit();
                 this.formDate.append('WS_CODE', "12133");
@@ -596,9 +621,9 @@
                     }
                 }
                 console.log(this.formDate)
-                axios.post("http://localhost:8090/testPicUpload", this.formDate,config).then( res => {
+                axios.post("http://localhost:8090/testPicUpload", this.formDate, config).then(res => {
                     console.log(res)
-                }).catch( res => {
+                }).catch(res => {
                     console.log(res)
                 })
             },
@@ -618,7 +643,12 @@
         }
     })
 </script>
+<style scoped>
+    .selected {
+        background: rgba(255, 246, 144, 0.73);
+    }
 
+</style>
 
 </body>
 
