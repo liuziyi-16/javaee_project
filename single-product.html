@@ -70,8 +70,8 @@
                                 <div class="header-shipping_area">
                                     <ul>
                                         <li>
-                                            <span>Telephone Enquiry:</span>
-                                            <a href="callto://+123123321345">(+123) 123 321 345</a>
+                                            <span>电话联系:</span>
+                                            <a href="callto://+123123321345">(+186) 123 321 345</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -81,24 +81,27 @@
                             <div class="ht-right_area">
                                 <div class="ht-menu">
                                     <ul>
-                                        <li><a href="javascript:void(0)">Currency<i class="fa fa-chevron-down"></i></a>
+                                        <li><a href="javascript:void(0)">货币<i class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown ht-currency">
+                                                <li class="active"><a href="javascript:void(0)">¥ 人民币</a></li>
                                                 <li><a href="javascript:void(0)">€ EUR</a></li>
-                                                <li class="active"><a href="javascript:void(0)">£ Pound Sterling</a></li>
+                                                <li><a href="javascript:void(0)">£ Pound Sterling</a></li>
                                                 <li><a href="javascript:void(0)">$ Us Dollar</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="javascript:void(0)">Language <i class="fa fa-chevron-down"></i></a>
+                                        <li><a href="javascript:void(0)">语言 <i class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown">
-                                                <li class="active"><a href="javascript:void(0)"><img src="assets/images/menu/icon/1.jpg" alt="JB's Language Icon">English</a></li>
+                                                <li><a href="javascript:void(0)"><img src="assets/images/menu/icon/1.jpg" alt="JB's Language Icon">English</a></li>
                                                 <li><a href="javascript:void(0)"><img src="assets/images/menu/icon/2.jpg" alt="JB's Language Icon">Français</a>
+                                                <li class="active"><a href="javascript:void(0)"><img src="assets/images/menu/icon/3.jpg" alt="JB's Language Icon">中文</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">My Account<i class="fa fa-chevron-down"></i></a>
+                                        <li><a href="#">我的登陆<i class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown ht-my_account">
-                                                <li><a href="javascript:void(0)">Register</a></li>
-                                                <li class="active"><a href="javascript:void(0)">Login</a></li>
+                                                <li class="active"><a href="register-user.html">注册</a></li>
+                                                <li><a href="login-user.html">登陆</a></li>
+                                                <li><a href="login-admin.html">管理员登陆</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -215,11 +218,9 @@
                             <div class="main-menu_area">
                                 <nav>
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="single-product">Single Product</a></li>
-										<li><a href="list.html">List</a></li>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="index.html">主页</a></li>
+                                        <li><a @click="jump()">产品列表</a></li>
+                                        <li><a @click="jumptoinfo()">个人信息</a></li>
                                     </ul>
                                 </nav>
                             </div>
