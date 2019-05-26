@@ -1235,9 +1235,8 @@
         new Vue({
             el: '#app',
             data: {
-                site: "菜鸟教程",
-                url: "www.runoob.com",
-                alexa: "10000",
+                label:'',
+                productname:"",
                 username:'',
                 pageNow:1,
                 listData: [
@@ -1286,13 +1285,17 @@
             },
             mounted(){
                 console.log("test")
-                var name = "name"
-                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                this.username = r[2]
+                this.username = this.getData("name");
+                this.label = this.getData("label");
+                this.productname = this.getData("text")
                 console.log(this.username)
             },
             watch: {
+                getData(name){
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    return r[2]
+                },
                 selectVal(newValue,oldValue) {
                         console.log(newValue);
                     }
