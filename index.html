@@ -643,21 +643,21 @@
                             </div>
                             <div id="cate-toggle" class="category-menu-list">
                                 <ul>
-                                    <li class="right-menu"><a href="#">计算机</a>
+                                    <li ><a @click="goToTag('计算机')">计算机</a>
                                     </li>
-                                    <li class="right-menu"><a href="#">通信</a>
+                                    <li ><a @click="goToTag('通信')">通信</a>
                                     </li>
-                                    <li class="right-menu"><a href="#">基础通识课</a>
+                                    <li ><a @click="goToTag('基础通识课')">基础通识课</a>
                                     </li>
-                                    <li class="right-menu"><a href="#">机自</a>
+                                    <li ><a @click="goToTag('机自')">机自</a>
                                     </li>
-                                    <li><a href="#">材料</a></li>
-                                    <li><a href="#">生科</a></li>
-                                    <li><a href="#">环化</a></li>
-                                    <li><a href="#">法学院</a></li>
-                                    <li><a href="#">文学院</a></li>
-                                    <li class="rx-child"><a href="#">经管学院</a></li>
-                                    <li class="rx-child"><a href="#">理学院</a></li>
+                                    <li><a  @click="goToTag('材料')">材料</a></li>
+                                    <li><a @click="goToTag('生科')">生科</a></li>
+                                    <li><a @click="goToTag('环化')">环化</a></li>
+                                    <li><a @click="goToTag('法学院')">法学院</a></li>
+                                    <li><a @click="goToTag('文学院')">文学院</a></li>
+                                    <li class="rx-child"><a @click="goToTag('经管学院')">经管学院</a></li>
+                                    <li class="rx-child"><a @click="goToTag('理学院')">理学院</a></li>
                                     <li class="rx-parent">
                                         <a class="rx-default">更多类别</a>
                                         <a class="rx-show">关闭</a>
@@ -1547,7 +1547,10 @@
                 return r[2]
             },
             search(){
-                window.location.href = "list.html?label="+this.value+"&text="+this.selectValue+"&name="+this.username;
+                window.location.href = "list.html?label="+this.value+"&text="+this.selectValue+"&name="+this.username+"&model="+"tag&text";
+            },
+            goToTag(tag){
+                window.location.href = "list.html?label="+tag+"&name="+this.username+"&model="+"tag";
             },
 
             addCart(id){
