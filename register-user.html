@@ -11,7 +11,7 @@
 
     <!-- CSS
 	============================================ -->
-
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
     <!-- Fontawesome -->
@@ -45,7 +45,7 @@
 
 <body class="template-color-1">
 
-    <div class="main-wrapper">
+    <div class="main-wrapper" id="app">
 
         <!-- Begin Loading Area -->
         <div class="loading">
@@ -195,23 +195,27 @@
                         <div class="contact-form-content">
                             <h3 class="contact-page-title">输入信息</h3>
                             <div class="contact-form">
-                                <form id="contact-form" action="http://hasthemes.com/file/mail.php" method="post">
+                                <form id="contact-form" method="post">
                                     <div class="form-group">
                                         <label>你的用户名 <span class="required">*</span></label>
-                                        <input type="text" name="con_name" id="con_name" required>
+                                        <input v-model="username" type="text" name="con_name" id="con_name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>你的姓名 <span class="required">*</span></label>
+                                        <input v-model="name" type="text" name="con_name" id="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>你的密码 <span class="required">*</span></label>
-                                        <input type="password" name="con_email" id="userpassword" required>
+                                        <input v-model="password" type="password" name="con_email" id="userpassword" required>
                                     </div>
                                     <div class="form-group">
                                         <label>你的手机号 <span class="required">*</span></label>
-                                        <input type="tel" name="con_email" id="tel" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" value="submit" id="submit" class="alsita-contact-form_btn" name="submit">注册</button>
+                                        <input v-model="telenum" type="tel" name="con_email" id="tel" required>
                                     </div>
                                 </form>
+                                <div class="form-group">
+                                    <button @click="submit()" class="alsita-contact-form_btn" name="submit">注册</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -332,7 +336,7 @@
 
     <!-- JS
 ============================================ -->
-
+    <script src="assets/js/vendor/vue.min.js"></script>
     <!-- jQuery JS -->
     <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
     <!-- Modernizer JS -->
@@ -369,7 +373,8 @@
     <script src="assets/js/plugins/instafeed.min.js"></script>
     <!-- Instafeed JS -->
     <script src="assets/js/plugins/jquery.elevateZoom-3.0.8.min.js"></script>
-
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- Vendor & Plugins JS (Please remove the comment from below vendor.min.js & plugins.min.js for better website load performance and remove js files from avobe) -->
     <!--
 <script src="assets/js/vendor/vendor.min.js"></script>
@@ -378,7 +383,30 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                name:'',
+                username:'',
+                password:'',
+                telenum:'',
+            },
+            watch:{
+            },
+            methods:{
+                submit(){
+                    if(this.name!='' && this.username !='' && this.password != '' && this.telenum!='') {
+                        window.location.href = "index.html?name=" + this.username;
+                    }
+                    else{
+                        this.$message.error('请输入完整信息');
+                    }
+                }
+            }
 
+        })
+    </script>
 </body>
 
 </html>

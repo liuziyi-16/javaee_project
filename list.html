@@ -1284,11 +1284,16 @@
             created() {
             },
             mounted(){
-                console.log("test")
-                this.username = this.getData("name");
-                this.label = this.getData("label");
-                this.productname = this.getData("text")
-                console.log(this.username)
+                var model = this.getData("model")
+                if(model === "tag"){
+                    this.username = this.getData("name");
+                    this.label = this.getData("label");
+                }
+                else{
+                    this.username = this.getData("name");
+                    this.label = this.getData("label");
+                    this.productname = this.getData("text")
+                }
             },
             watch: {
                 getData(name){
