@@ -372,7 +372,7 @@
                                                 <!--                <el-tooltip class="item" effect="dark" content="只有异常指标会弹出数据显示哦~" placement="right">-->
                                                 <el-tag
                                                         :type="scope.row.forsure === true ? 'success' : 'danger'"
-                                                        disable-transitions @click="handleClickOnTag(scope.row.forsure)">{{scope.row.forsure === true ? '确认' : '未确认'}}
+                                                        disable-transitions @click="handleClickOnTag(scope)">{{scope.row.forsure === true ? '确认' : '未确认'}}
                                                 </el-tag>
                                                 <!--                </el-tooltip>-->
                                             </template>
@@ -385,7 +385,7 @@
                                             :before-close="handleClose">
                                             如果确认收货，那么资金将被打入卖家账户，您确认吗？
                                         <span slot="footer" class="dialog-footer">
-                                <el-button type="primary" @click="dialogVisible = false">确认</el-button>
+                                <el-button type="primary" @click="confirm()">确认</el-button>
                                             <el-button  @click="dialogVisible = false">关闭</el-button>
             </span>
                                     </el-dialog>
@@ -680,15 +680,24 @@
                 address: '上海市普陀区金沙江路 1516 弄',
                 forsure:true,
                 dialogVisible:false,
-            }]
+            }],
+            selectNow:'',
         },
         created() {
             console.log("test");
         },
         methods: {
+            confirm(){
+                this.tableData[this.selectNow].forsure = true
+                var data = {}
+                data.reid = this.tableData[this.selectNow].reid
+                //预留发送数据到后端 告知该商品已经确认到货
+                this.dialogVisible = false
+            },
             handleClickOnTag(flag){
-                if(flag === false) {
-                    this.dialogVisible = true
+                if(flag.row.forsure === false) {
+                    this.dialogVisible = true;
+                    this.selectNow = flag.$index
                 }
             },
             filterTag(value, row){
