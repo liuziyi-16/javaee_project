@@ -890,18 +890,18 @@
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
-                                                               data-placement="top" title="Add To Cart"><i
+                                                               data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
                                                                data-toggle="tooltip"
-                                                               data-placement="top" title="Compare This Product"><i
+                                                               data-placement="top" title="商品对比"><i
                                                                 class="ion-ios-shuffle-strong"></i></a></li>
                                                         <li class="quick-view-btn" data-toggle="modal"
                                                             data-target="#exampleModalCenter"><a
                                                                 href="javascript:void(0)"
                                                                 data-toggle="tooltip"
                                                                 data-placement="top"
-                                                                title="Quick View"><i
+                                                                title="快速预览"><i
                                                                 class="ion-eye"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -914,10 +914,9 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a class="hiraola-add_compare" href="#"
-                                                                   data-toggle="tooltip" data-placement="top"
-                                                                   title="Add To Wishlist"><i
-                                                                    class="ion-android-favorite-outline"></i></a>
+                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                                   data-placement="top" title="收藏"><i
+                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -955,18 +954,18 @@
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
-                                                               data-placement="top" title="Add To Cart"><i
+                                                               data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
                                                                data-toggle="tooltip"
-                                                               data-placement="top" title="Compare This Product"><i
+                                                               data-placement="top" title="商品对比"><i
                                                                 class="ion-ios-shuffle-strong"></i></a></li>
                                                         <li class="quick-view-btn" data-toggle="modal"
                                                             data-target="#exampleModalCenter"><a
                                                                 href="javascript:void(0)"
                                                                 data-toggle="tooltip"
                                                                 data-placement="top"
-                                                                title="Quick View"><i
+                                                                title="快速预览"><i
                                                                 class="ion-eye"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -979,10 +978,9 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a class="hiraola-add_compare" href="#"
-                                                                   data-toggle="tooltip" data-placement="top"
-                                                                   title="Add To Wishlist"><i
-                                                                    class="ion-android-favorite-outline"></i></a>
+                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                                   data-placement="top" title="收藏"><i
+                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -1020,18 +1018,18 @@
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
-                                                               data-placement="top" title="Add To Cart"><i
+                                                               data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
                                                                data-toggle="tooltip"
-                                                               data-placement="top" title="Compare This Product"><i
+                                                               data-placement="top" title="商品对比"><i
                                                                 class="ion-ios-shuffle-strong"></i></a></li>
                                                         <li class="quick-view-btn" data-toggle="modal"
                                                             data-target="#exampleModalCenter"><a
                                                                 href="javascript:void(0)"
                                                                 data-toggle="tooltip"
                                                                 data-placement="top"
-                                                                title="Quick View"><i
+                                                                title="快速预览"><i
                                                                 class="ion-eye"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -1044,10 +1042,9 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a class="hiraola-add_compare" href="#"
-                                                                   data-toggle="tooltip" data-placement="top"
-                                                                   title="Add To Wishlist"><i
-                                                                    class="ion-android-favorite-outline"></i></a>
+                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                                   data-placement="top" title="收藏"><i
+                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -1085,18 +1082,18 @@
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
-                                                               data-placement="top" title="Add To Cart"><i
+                                                               data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
                                                                data-toggle="tooltip"
-                                                               data-placement="top" title="Compare This Product"><i
+                                                               data-placement="top" title="商品对比"><i
                                                                 class="ion-ios-shuffle-strong"></i></a></li>
                                                         <li class="quick-view-btn" data-toggle="modal"
                                                             data-target="#exampleModalCenter"><a
                                                                 href="javascript:void(0)"
                                                                 data-toggle="tooltip"
                                                                 data-placement="top"
-                                                                title="Quick View"><i
+                                                                title="快速预览"><i
                                                                 class="ion-eye"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -1109,10 +1106,9 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a class="hiraola-add_compare" href="#"
-                                                                   data-toggle="tooltip" data-placement="top"
-                                                                   title="Add To Wishlist"><i
-                                                                    class="ion-android-favorite-outline"></i></a>
+                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                                   data-placement="top" title="收藏"><i
+                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
                                                         </ul>
                                                     </div>
