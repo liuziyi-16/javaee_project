@@ -429,10 +429,14 @@
                         .then(response => {
                             // data就是我们请求的repos
                             console.log(response)
-                            if (response.data.state === "success") {
+                            if (response.state === "success") {
+                                this.$message({
+                                    message: '注册成功',
+                                    type: 'success'
+                                });
                                 window.location.href = "login-user.html";
-                            } else {
-                                this.$message.error('该用户已注册');
+                            } else{
+                                this.$message.error(response.message);
                             }
                         });
                 } else {

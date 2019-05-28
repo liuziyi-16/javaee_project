@@ -880,13 +880,13 @@
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.test)">
                                                     <img class="primary-img"
-                                                         src="assets/images/product/medium-size/1-1.jpg"
+                                                         :src="item.image"
                                                          alt="Hiraola's Product Image">
                                                     <img class="secondary-img"
                                                          src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                 </a>
-                                                <span class="sticker">New</span>
+                                                <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
@@ -908,9 +908,10 @@
                                             </div>
                                             <div class="hiraola-product_content">
                                                 <div class="product-desc_info">
-                                                    <h6><a class="product-name" href="#">{{item.test}}</a></h6>
+                                                    <h6><a class="product-name" href="#">{{item.title}}</a></h6>
                                                     <div class="price-box">
-                                                        <span class="new-price">£120.80</span>
+                                                        <span class="old-price">￥ {{item.normalcost}}</span>
+                                                        <span class="new-price">￥ {{item.cost}}</span>
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
@@ -1470,6 +1471,7 @@
         el: '#app',
         data: {
             userid:"",
+            ipaddress:'http://139.196.121.254:8091',
             recommend: [
                 {
                     id:"1",
@@ -1527,8 +1529,83 @@
             var r = window.location.search.substr(1).match(reg);
             if (r!= null) {
                 this.userid = this.getData("userid");
-
             }
+            var data = {}
+            data.tagname = "计算机"
+            fetch('http://139.196.121.254:8091/api/book/tag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data1 = response
+                    for(var i = 0;i<this.data1.length;i++){
+                        this.data1[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data1[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
+            data = {}
+            data=tagname = "通信"
+            fetch('http://139.196.121.254:8091/api/book/tag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data2 = response
+                    for(var i = 0;i<this.data2.length;i++){
+                        this.data2[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data2[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
+            data = {}
+            data=tagname = "机自"
+            fetch('http://139.196.121.254:8091/api/book/tag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data3 = response
+                    for(var i = 0;i<this.data3.length;i++){
+                        this.data3[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data3[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
+            data = {}
+            data=tagname = "生科"
+            fetch('http://139.196.121.254:8091/api/book/tag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data4 = response
+                    for(var i = 0;i<this.data4.length;i++){
+                        this.data4[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data4[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
         },
         methods: {
             getData(name){

@@ -12,6 +12,7 @@
     <!-- CSS
 	============================================ -->
 
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
     <!-- Fontawesome -->
@@ -374,6 +375,7 @@
 -->
 
 <!-- Main JS -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">
     new Vue({
@@ -399,15 +401,25 @@
                     })
                         .then(response => response.json())
                         .then(response => {
-                            // data就是我们请求的repos
-                            console.log(response)
-                            if (response.response.authority === "ROLE") {
-                                var userid = response.response.userid;
-                                window.location.href = "index.html?userid="+userid;
+                            if(response.state === 'error'){
+                                this.$message.error(response.response);
+                            }
+                            else if (response.state === "success") {
+                                if(response.response.authority === 'ROLE') {
+                                    var userid = response.response.userid;
+                                    window.location.href = "index.html?userid=" + userid;
+                                }
+                                else if(response.response.authority === "Admin"){
+                                    var userid = response.response.userid;
+                                    window.location.href = "admin-info.html?userid=" + userid;
+                                }
                             } else {
                                 this.$message.error('登入失败');
                             }
-                        });
+                        })
+                        // .catch(error => {
+                        //     this.$message.error(error.response);
+                        // })
                 } else {
                     this.$message.error('请输入完整信息');
                 }
