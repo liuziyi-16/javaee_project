@@ -806,7 +806,7 @@
                                             </div>
                                             <div class="additional-add_action">
                                                 <ul>
-                                                    <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                    <li><a @click="changeLike('recommend',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
                                                            data-placement="top" title="收藏"><i
                                                             :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                     </li>
@@ -878,9 +878,9 @@
                                     <div class="slide-item" v-for="item in data1">
                                         <div class="single_product">
                                             <div class="product-img">
-                                                <a @click="JumpSingle(item.test)">
+                                                <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                         :src="item.image"
+                                                         src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                     <img class="secondary-img"
                                                          src="assets/images/product/medium-size/1-2.jpg"
@@ -889,7 +889,7 @@
                                                 <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
                                                     <ul>
-                                                        <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
+                                                        <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"
                                                                data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
@@ -915,7 +915,7 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                            <li><a @click="changeLike('data1',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"
                                                                    data-placement="top" title="收藏"><i
                                                                     :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
@@ -975,7 +975,7 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                            <li><a @click="changeLike('data2',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
                                                                    data-placement="top" title="收藏"><i
                                                                     :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
@@ -1035,7 +1035,7 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                            <li><a @click="changeLike('data3',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
                                                                    data-placement="top" title="收藏"><i
                                                                     :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
@@ -1096,7 +1096,7 @@
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a @click="changeLike(item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                            <li><a @click="changeLike('data4',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
                                                                    data-placement="top" title="收藏"><i
                                                                     :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
@@ -1532,13 +1532,7 @@
             }
             var data = {}
             data.tagname = "计算机"
-            fetch('http://139.196.121.254:8091/api/book/tag', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
+            fetch('http://139.196.121.254:8091/api/book/tag/1')
                 .then(response=>response.json())
                 .then(response=>{
                     console.log(response)
@@ -1546,66 +1540,66 @@
                     for(var i = 0;i<this.data1.length;i++){
                         this.data1[i].rate= Math.floor(Math.random() * 5) + 1;
                         this.data1[i].image= this.ipaddress+this.data1[i].image;
+                        this.data1[i].like = false;
                     }
-
                 })
-            data = {}
-            data=tagname = "通信"
-            fetch('http://139.196.121.254:8091/api/book/tag', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response=>response.json())
-                .then(response=>{
-                    console.log(response)
-                    this.data2 = response
-                    for(var i = 0;i<this.data2.length;i++){
-                        this.data2[i].rate= Math.floor(Math.random() * 5) + 1;
-                        this.data2[i].image= this.ipaddress+this.data1[i].image;
-                    }
-
-                })
-            data = {}
-            data=tagname = "机自"
-            fetch('http://139.196.121.254:8091/api/book/tag', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response=>response.json())
-                .then(response=>{
-                    console.log(response)
-                    this.data3 = response
-                    for(var i = 0;i<this.data3.length;i++){
-                        this.data3[i].rate= Math.floor(Math.random() * 5) + 1;
-                        this.data3[i].image= this.ipaddress+this.data1[i].image;
-                    }
-
-                })
-            data = {}
-            data=tagname = "生科"
-            fetch('http://139.196.121.254:8091/api/book/tag', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response=>response.json())
-                .then(response=>{
-                    console.log(response)
-                    this.data4 = response
-                    for(var i = 0;i<this.data4.length;i++){
-                        this.data4[i].rate= Math.floor(Math.random() * 5) + 1;
-                        this.data4[i].image= this.ipaddress+this.data1[i].image;
-                    }
-
-                })
+            // data = {}
+            // data.tagname = "通信"
+            // fetch('http://139.196.121.254:8091/api/book/tag', {
+            //     method: 'post',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            //     .then(response=>response.json())
+            //     .then(response=>{
+            //         console.log(response)
+            //         this.data2 = response
+            //         for(var i = 0;i<this.data2.length;i++){
+            //             this.data2[i].rate= Math.floor(Math.random() * 5) + 1;
+            //             this.data2[i].image= this.ipaddress+this.data1[i].image;
+            //         }
+            //
+            //     })
+            // data = {}
+            // data.tagname = "机自"
+            // fetch('http://139.196.121.254:8091/api/book/tag', {
+            //     method: 'post',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            //     .then(response=>response.json())
+            //     .then(response=>{
+            //         console.log(response)
+            //         this.data3 = response
+            //         for(var i = 0;i<this.data3.length;i++){
+            //             this.data3[i].rate= Math.floor(Math.random() * 5) + 1;
+            //             this.data3[i].image= this.ipaddress+this.data1[i].image;
+            //         }
+            //
+            //     })
+            // data = {}
+            // data.tagname = "生科"
+            // fetch('http://139.196.121.254:8091/api/book/tag', {
+            //     method: 'post',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            //     .then(response=>response.json())
+            //     .then(response=>{
+            //         console.log(response)
+            //         this.data4 = response
+            //         for(var i = 0;i<this.data4.length;i++){
+            //             this.data4[i].rate= Math.floor(Math.random() * 5) + 1;
+            //             this.data4[i].image= this.ipaddress+this.data1[i].image;
+            //         }
+            //
+            //     })
         },
         methods: {
             getData(name){
@@ -1619,25 +1613,60 @@
             goToTag(tag){
                 window.location.href = "list.html?label="+tag+"&userid="+this.userid+"&model="+"tag";
             },
-
-            addCart(id){
-                console.log(id)
+            addCart(bookid){
+                console.log('in the addCart')
+                var data={}
+                data.bookid = bookid;
+                data.userid = this.userid;
+                fetch('http://139.196.121.254:8091/api/shop/create', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        console.log(response)
+                        if(response.state === 'success'){
+                            this.$message({
+                                message: '添加购物车成功',
+                                type: 'success'
+                            });
+                        }
+                    })
             },
-            changeLike(id){
-                for (var i=0;i<this.recommend.length;i++) {
-                   if(this.recommend[i].id === id && this.recommend[i].like === false){
-                       this.recommend[i].like = true
-                       break
-                   }
-                   else if(this.recommend[i].id === id && this.recommend[i].like === true){
-                       this.recommend[i].like = false
-                       break
+            changeLike(dataname,id){
+                console.log(dataname)
+                if(dataname === "recommend") {
+                    console.log('in the commend')
+                    console.log(this.recommend.length)
+                    for (var i = 0; i < this.recommend.length; i++) {
+                        console.log(i)
+                        console.log(this.recommend[i])
+                        if (this.recommend[i].id === id && this.recommend[i].like === false) {
+                            this.recommend[i].like = true
+                            break
+                        } else if (this.recommend[i].id === id && this.recommend[i].like === true) {
+                            this.recommend[i].like = false
+                            break
+                        }
+                    }
+                }
+                else if(dataname === "data1"){
+                    for (var i = 0; i < this.data1.length; i++) {
+                        if (this.data1[i].bookid === id && this.data1[i].like === false) {
+                            this.data1[i].like = true
+                            break
+                        } else if (this.data1[i].bookid === id && this.data1[i].like === true) {
+                            this.data1[i].like = false
+                            break
+                        }
                     }
                 }
             },
-            JumpSingle(productname){
-                console.log(productname)
-                window.location.href = "single-product.html?name=liuziyi&productname="+productname;
+            JumpSingle(bookid){
+                window.location.href = "single-product.html?name="+this.userid+"&bookid="+bookid;
             },
             details: function () {
                 return this.site + " - 学的不仅是技术，更是梦想！";
