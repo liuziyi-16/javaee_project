@@ -875,7 +875,7 @@
                             <!--                        基础通识课-->
                             <div id="necklaces" class="tab-pane active show" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
-                                    <div class="slide-item" v-for="item in recommend">
+                                    <div class="slide-item" v-for="item in data1">
                                         <div class="single_product">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.test)">
@@ -935,7 +935,7 @@
                             <!--                        核心通识课-->
                             <div id="earrings" class="tab-pane" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
-                                    <div class="slide-item" v-for="item in recommend">
+                                    <div class="slide-item" v-for="item in data2">
                                         <div class="single_product">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.test)">
@@ -995,7 +995,7 @@
                             <!--                        计算机-->
                             <div id="bracelet" class="tab-pane" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
-                                    <div class="slide-item" v-for="item in recommend">
+                                    <div class="slide-item" v-for="item in data3">
                                         <div class="single_product">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.test)">
@@ -1066,7 +1066,8 @@
                                                          src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                 </a>
-                                                <span class="sticker">New</span>
+                                                <span class="sticker">通信</span>
+                                                <span class="sticker-2">通信</span>
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
@@ -1495,6 +1496,10 @@
                     rate:1,
                 }
             ],
+            data1:[],
+            data2:[],
+            data3:[],
+            data4:[],
             options: [{
                 value: '计算机',
                 label: '计算机'
