@@ -774,39 +774,44 @@
                             <div class="slide-item" v-for="item in recommend">
                                 <div class="single_product">
                                     <div class="product-img">
-                                        <a @click="JumpSingle(item.test)">
-                                            <img class="primary-img" src="assets/images/product/medium-size/1-1.jpg"
+                                        <a @click="JumpSingle(item.bookid)">
+                                            <img class="primary-img"
+                                                 src="assets/images/product/medium-size/1-2.jpg"
                                                  alt="Hiraola's Product Image">
-                                            <img class="secondary-img" src="assets/images/product/medium-size/1-2.jpg"
+                                            <img class="secondary-img"
+                                                 src="assets/images/product/medium-size/1-2.jpg"
                                                  alt="Hiraola's Product Image">
                                         </a>
-                                        <span class="sticker">New</span>
+                                        <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                         <div class="add-actions">
                                             <ul>
-                                                <li><a class="hiraola-add_cart" @click="addCart(item.id)" data-toggle="tooltip"
-                                                       data-placement="top" title="加入购物车"><i class="ion-bag"></i></a>
-                                                </li>
-                                                <li><a class="hiraola-add_compare" href="#" data-toggle="tooltip"
+                                                <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"
+                                                       data-placement="top" title="添加购物车"><i
+                                                        class="ion-bag"></i></a></li>
+                                                <li><a class="hiraola-add_compare" href="#"
+                                                       data-toggle="tooltip"
                                                        data-placement="top" title="商品对比"><i
                                                         class="ion-ios-shuffle-strong"></i></a></li>
                                                 <li class="quick-view-btn" data-toggle="modal"
-                                                    data-target="#exampleModalCenter"><a href="javascript:void(0)"
-                                                                                         data-toggle="tooltip"
-                                                                                         data-placement="top"
-                                                                                         title="快速预览"><i
+                                                    data-target="#exampleModalCenter"><a
+                                                        href="javascript:void(0)"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="快速预览"><i
                                                         class="ion-eye"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="hiraola-product_content">
                                         <div class="product-desc_info">
-                                            <h6><a class="product-name" href="#">{{item.test}}</a></h6>
+                                            <h6><a class="product-name" href="#">{{item.title}}</a></h6>
                                             <div class="price-box">
-                                                <span class="new-price">£120.80</span>
+                                                <span class="old-price">￥ {{item.normalcost}}</span>
+                                                <span class="new-price">￥ {{item.cost}}</span>
                                             </div>
                                             <div class="additional-add_action">
                                                 <ul>
-                                                    <li><a @click="changeLike('recommend',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                    <li><a @click="changeLike('recommend',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"
                                                            data-placement="top" title="收藏"><i
                                                             :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                     </li>
@@ -939,18 +944,18 @@
                                     <div class="slide-item" v-for="item in data2">
                                         <div class="single_product">
                                             <div class="product-img">
-                                                <a @click="JumpSingle(item.test)">
+                                                <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                         src="assets/images/product/medium-size/1-1.jpg"
+                                                         src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                     <img class="secondary-img"
                                                          src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                 </a>
-                                                <span class="sticker">New</span>
+                                                <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
                                                     <ul>
-                                                        <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
+                                                        <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"
                                                                data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
@@ -969,13 +974,14 @@
                                             </div>
                                             <div class="hiraola-product_content">
                                                 <div class="product-desc_info">
-                                                    <h6><a class="product-name" href="#">{{item.test}}</a></h6>
+                                                    <h6><a class="product-name" href="#">{{item.title}}</a></h6>
                                                     <div class="price-box">
-                                                        <span class="new-price">£120.80</span>
+                                                        <span class="old-price">￥ {{item.normalcost}}</span>
+                                                        <span class="new-price">￥ {{item.cost}}</span>
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a @click="changeLike('data2',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                            <li><a @click="changeLike('data2',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"
                                                                    data-placement="top" title="收藏"><i
                                                                     :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
@@ -999,18 +1005,18 @@
                                     <div class="slide-item" v-for="item in data3">
                                         <div class="single_product">
                                             <div class="product-img">
-                                                <a @click="JumpSingle(item.test)">
+                                                <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                         src="assets/images/product/medium-size/1-1.jpg"
+                                                         src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                     <img class="secondary-img"
                                                          src="assets/images/product/medium-size/1-2.jpg"
                                                          alt="Hiraola's Product Image">
                                                 </a>
-                                                <span class="sticker">New</span>
+                                                <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
                                                     <ul>
-                                                        <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
+                                                        <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"
                                                                data-placement="top" title="添加购物车"><i
                                                                 class="ion-bag"></i></a></li>
                                                         <li><a class="hiraola-add_compare" href="#"
@@ -1029,13 +1035,14 @@
                                             </div>
                                             <div class="hiraola-product_content">
                                                 <div class="product-desc_info">
-                                                    <h6><a class="product-name" href="#">{{item.test}}</a></h6>
+                                                    <h6><a class="product-name" href="#">{{item.title}}</a></h6>
                                                     <div class="price-box">
-                                                        <span class="new-price">£120.80</span>
+                                                        <span class="old-price">￥ {{item.normalcost}}</span>
+                                                        <span class="new-price">￥ {{item.cost}}</span>
                                                     </div>
                                                     <div class="additional-add_action">
                                                         <ul>
-                                                            <li><a @click="changeLike('data3',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
+                                                            <li><a @click="changeLike('data3',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"
                                                                    data-placement="top" title="收藏"><i
                                                                     :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
                                                             </li>
@@ -1054,66 +1061,66 @@
                                 </div>
                             </div>
                             <!--                        通信-->
-                            <div id="anklet" class="tab-pane" role="tabpanel">
-                                <div class="hiraola-product-tab_slider-2">
-                                    <div class="slide-item" v-for="item in recommend">
-                                        <div class="single_product">
-                                            <div class="product-img">
-                                                <a @click="JumpSingle(item.test)">
-                                                    <img class="primary-img"
-                                                         src="assets/images/product/medium-size/1-1.jpg"
-                                                         alt="Hiraola's Product Image">
-                                                    <img class="secondary-img"
-                                                         src="assets/images/product/medium-size/1-2.jpg"
-                                                         alt="Hiraola's Product Image">
-                                                </a>
-                                                <span class="sticker">通信</span>
-                                                <span class="sticker-2">通信</span>
-                                                <div class="add-actions">
-                                                    <ul>
-                                                        <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip"
-                                                               data-placement="top" title="Add To Cart"><i
-                                                                class="ion-bag"></i></a></li>
-                                                        <li><a class="hiraola-add_compare" href="#"
-                                                               data-toggle="tooltip"
-                                                               data-placement="top" title="Compare This Product"><i
-                                                                class="ion-ios-shuffle-strong"></i></a></li>
-                                                        <li class="quick-view-btn" data-toggle="modal"
-                                                            data-target="#exampleModalCenter"><a
-                                                                href="javascript:void(0)"
-                                                                data-toggle="tooltip"
-                                                                data-placement="top"
-                                                                title="Quick View"><i
-                                                                class="ion-eye"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="hiraola-product_content">
-                                                <div class="product-desc_info">
-                                                    <h6><a class="product-name" href="#">{{item.test}}</a></h6>
-                                                    <div class="price-box">
-                                                        <span class="new-price">£120.80</span>
-                                                    </div>
-                                                    <div class="additional-add_action">
-                                                        <ul>
-                                                            <li><a @click="changeLike('data4',item.id)" class="hiraola-add_compare" data-toggle="tooltip"
-                                                                   data-placement="top" title="收藏"><i
-                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="rating-box">
-                                                        <ul>
-                                                            <li style="margin-right: 0;" v-for="i in item.rate"><i class="fa fa-star-of-david" style="margin-right: 5px"></i></li>
-                                                            <li v-for="i in 5-item.rate" class="silver-color"><i class="fa fa-star-of-david" style="margin-right: 5px;margin-left: 0;" ></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div id="anklet" class="tab-pane" role="tabpanel">-->
+<!--                                <div class="hiraola-product-tab_slider-2">-->
+<!--                                    <div class="slide-item" v-for="item in data4">-->
+<!--                                        <div class="single_product">-->
+<!--                                            <div class="product-img">-->
+<!--                                                <a @click="JumpSingle(item.bookid)">-->
+<!--                                                    <img class="primary-img"-->
+<!--                                                         src="assets/images/product/medium-size/1-2.jpg"-->
+<!--                                                         alt="Hiraola's Product Image">-->
+<!--                                                    <img class="secondary-img"-->
+<!--                                                         src="assets/images/product/medium-size/1-2.jpg"-->
+<!--                                                         alt="Hiraola's Product Image">-->
+<!--                                                </a>-->
+<!--                                                <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>-->
+<!--                                                <div class="add-actions">-->
+<!--                                                    <ul>-->
+<!--                                                        <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"-->
+<!--                                                               data-placement="top" title="添加购物车"><i-->
+<!--                                                                class="ion-bag"></i></a></li>-->
+<!--                                                        <li><a class="hiraola-add_compare" href="#"-->
+<!--                                                               data-toggle="tooltip"-->
+<!--                                                               data-placement="top" title="商品对比"><i-->
+<!--                                                                class="ion-ios-shuffle-strong"></i></a></li>-->
+<!--                                                        <li class="quick-view-btn" data-toggle="modal"-->
+<!--                                                            data-target="#exampleModalCenter"><a-->
+<!--                                                                href="javascript:void(0)"-->
+<!--                                                                data-toggle="tooltip"-->
+<!--                                                                data-placement="top"-->
+<!--                                                                title="快速预览"><i-->
+<!--                                                                class="ion-eye"></i></a></li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="hiraola-product_content">-->
+<!--                                                <div class="product-desc_info">-->
+<!--                                                    <h6><a class="product-name" href="#">{{item.title}}</a></h6>-->
+<!--                                                    <div class="price-box">-->
+<!--                                                        <span class="old-price">￥ {{item.normalcost}}</span>-->
+<!--                                                        <span class="new-price">￥ {{item.cost}}</span>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="additional-add_action">-->
+<!--                                                        <ul>-->
+<!--                                                            <li><a @click="changeLike('data4',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"-->
+<!--                                                                   data-placement="top" title="收藏"><i-->
+<!--                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="rating-box">-->
+<!--                                                        <ul>-->
+<!--                                                            <li style="margin-right: 0;" v-for="i in item.rate"><i class="fa fa-star-of-david" style="margin-right: 5px"></i></li>-->
+<!--                                                            <li v-for="i in 5-item.rate" class="silver-color"><i class="fa fa-star-of-david" style="margin-right: 5px;margin-left: 0;" ></i></li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -1472,32 +1479,7 @@
         data: {
             userid:"",
             ipaddress:'http://139.196.121.254:8091',
-            recommend: [
-                {
-                    id:"1",
-                    test: "wanyine",
-                    like:false,
-                    rate:5,
-                },
-                {
-                    id:"2",
-                    test: "wanyine",
-                    like:false,
-                    rate:2,
-                },
-                {
-                    id:"3",
-                    test: "wanyine",
-                    like:false,
-                    rate:4,
-                },
-                {
-                    id:"4",
-                    test: "wanyine",
-                    like:false,
-                    rate:1,
-                }
-            ],
+            recommend: [],
             data1:[],
             data2:[],
             data3:[],
@@ -1512,8 +1494,8 @@
                 value: '生科',
                 label: '生科'
             }, {
-                value: '机自',
-                label: '机自'
+                value: '数学',
+                label: '数学'
             }, {
                 value: '材料',
                 label: '材料',
@@ -1529,10 +1511,25 @@
             var r = window.location.search.substr(1).match(reg);
             if (r!= null) {
                 this.userid = this.getData("userid");
+                fetch('http://139.196.121.254:8091/api/book/recomd/'+this.userid)
+                    .then(response=>response.json())
+                    .then(response=>{
+                        this.recommend = response;
+                        for(var i = 0;i<this.recommend.length;i++){
+                            this.recommend[i].rate= Math.floor(Math.random() * 5) + 1;
+                            this.recommend[i].image= this.ipaddress+this.recommend[i].image;
+                        }
+                    })
             }
             var data = {}
             data.tagname = "计算机"
-            fetch('http://139.196.121.254:8091/api/book/tag/1')
+            fetch('http://139.196.121.254:8091/api/book/bytag',{
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
                 .then(response=>response.json())
                 .then(response=>{
                     console.log(response)
@@ -1543,63 +1540,63 @@
                         this.data1[i].like = false;
                     }
                 })
-            // data = {}
-            // data.tagname = "通信"
-            // fetch('http://139.196.121.254:8091/api/book/tag', {
-            //     method: 'post',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data)
-            // })
-            //     .then(response=>response.json())
-            //     .then(response=>{
-            //         console.log(response)
-            //         this.data2 = response
-            //         for(var i = 0;i<this.data2.length;i++){
-            //             this.data2[i].rate= Math.floor(Math.random() * 5) + 1;
-            //             this.data2[i].image= this.ipaddress+this.data1[i].image;
-            //         }
-            //
-            //     })
-            // data = {}
-            // data.tagname = "机自"
-            // fetch('http://139.196.121.254:8091/api/book/tag', {
-            //     method: 'post',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data)
-            // })
-            //     .then(response=>response.json())
-            //     .then(response=>{
-            //         console.log(response)
-            //         this.data3 = response
-            //         for(var i = 0;i<this.data3.length;i++){
-            //             this.data3[i].rate= Math.floor(Math.random() * 5) + 1;
-            //             this.data3[i].image= this.ipaddress+this.data1[i].image;
-            //         }
-            //
-            //     })
-            // data = {}
-            // data.tagname = "生科"
-            // fetch('http://139.196.121.254:8091/api/book/tag', {
-            //     method: 'post',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data)
-            // })
-            //     .then(response=>response.json())
-            //     .then(response=>{
-            //         console.log(response)
-            //         this.data4 = response
-            //         for(var i = 0;i<this.data4.length;i++){
-            //             this.data4[i].rate= Math.floor(Math.random() * 5) + 1;
-            //             this.data4[i].image= this.ipaddress+this.data1[i].image;
-            //         }
-            //
-            //     })
+            data = {}
+            data.tagname = "通信"
+            fetch('http://139.196.121.254:8091/api/book/bytag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data2 = response
+                    for(var i = 0;i<this.data2.length;i++){
+                        this.data2[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data2[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
+            data = {}
+            data.tagname = "机械"
+            fetch('http://139.196.121.254:8091/api/book/bytag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data3 = response
+                    for(var i = 0;i<this.data3.length;i++){
+                        this.data3[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data3[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
+            data = {}
+            data.tagname = "数学"
+            fetch('http://139.196.121.254:8091/api/book/bytag', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.data4 = response
+                    for(var i = 0;i<this.data4.length;i++){
+                        this.data4[i].rate= Math.floor(Math.random() * 5) + 1;
+                        this.data4[i].image= this.ipaddress+this.data1[i].image;
+                    }
+
+                })
         },
         methods: {
             getData(name){
@@ -1664,18 +1661,26 @@
                         }
                     }
                 }
+                else if(dataname === "data2"){
+                    for (var i = 0; i < this.data2.length; i++) {
+                        if (this.data2[i].bookid === id && this.data2[i].like === false) {
+                            this.data2[i].like = true
+                            break
+                        } else if (this.data2[i].bookid === id && this.data2[i].like === true) {
+                            this.data2[i].like = false
+                            break
+                        }
+                    }
+                }
             },
             JumpSingle(bookid){
                 window.location.href = "single-product.html?name="+this.userid+"&bookid="+bookid;
-            },
-            details: function () {
-                return this.site + " - 学的不仅是技术，更是梦想！";
             },
             jump() {
                 window.location.href = "list.html?name=liuziyi&age=28"
             },
             jumptoinfo(){
-                window.location.href = "user-info.html?name=liuziyi&age=28"
+                window.location.href = "user-info.html?userid="+this.userid;
             },
         }
         })

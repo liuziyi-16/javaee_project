@@ -401,16 +401,17 @@
                     })
                         .then(response => response.json())
                         .then(response => {
+                            console.log(response)
                             if(response.state === 'error'){
-                                this.$message.error(response.response);
+                                this.$message.error("登入失败");
                             }
                             else if (response.state === "success") {
                                 if(response.response.authority === 'ROLE') {
                                     var userid = response.response.userid;
                                     window.location.href = "index.html?userid=" + userid;
                                 }
-                                else if(response.response.authority === "Admin"){
-                                    var userid = response.response.userid;
+                                else if(response.response.username === "admin"){
+                                    var userid = response.userid;
                                     window.location.href = "admin-info.html?userid=" + userid;
                                 }
                             } else {
