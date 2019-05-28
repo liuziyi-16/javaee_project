@@ -1468,7 +1468,7 @@
     new Vue({
         el: '#app',
         data: {
-            username:"",
+            userid:"",
             recommend: [
                 {
                     id:"1",
@@ -1518,7 +1518,12 @@
             console.log("test");
         },
         mounted(){
-            this.username = this.getData("name");
+            var reg = new RegExp("(^|&)" + "userid" + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r!= null) {
+                this.userid = this.getData("userid");
+
+            }
         },
         methods: {
             getData(name){
@@ -1527,10 +1532,10 @@
                 return r[2]
             },
             search(){
-                window.location.href = "list.html?label="+this.value+"&text="+this.selectValue+"&name="+this.username+"&model="+"tag&text";
+                window.location.href = "list.html?label="+this.value+"&text="+this.selectValue+"&userid="+this.userid+"&model="+"tag&text";
             },
             goToTag(tag){
-                window.location.href = "list.html?label="+tag+"&name="+this.username+"&model="+"tag";
+                window.location.href = "list.html?label="+tag+"&userid="+this.userid+"&model="+"tag";
             },
 
             addCart(id){

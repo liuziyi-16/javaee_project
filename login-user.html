@@ -386,7 +386,31 @@
         },
         methods:{
             login(){
-                window.location.href = "index.html?name="+this.username;
+                if (this.username != '' && this.password != '') {
+                    var data = {};
+                    data.username = this.username;
+                    data.password = this.password;
+                    fetch('http://139.196.121.254:8091/api/user/login', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => response.json())
+                        .then(response => {
+                            // data就是我们请求的repos
+                            console.log(response)
+                            if (response.response.authority === "ROLE") {
+                                var userid = response.response.userid;
+                                window.location.href = "index.html?userid="+userid;
+                            } else {
+                                this.$message.error('登入失败');
+                            }
+                        });
+                } else {
+                    this.$message.error('请输入完整信息');
+                }
             }
         }
 
