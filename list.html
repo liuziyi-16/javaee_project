@@ -694,8 +694,8 @@
                                         <div class="product-desc_info">
                                             <h6><a class="product-name" href="#">{{item.title}}</a></h6>
                                             <div class="price-box">
-                                                <span class="new-price">￥{{item.cost}} 12</span>
-                                                <span class="old-price">￥{{item.normalcost}} 12</span>
+                                                <span class="new-price">￥ {{item.cost}}</span>
+                                                <span class="old-price">￥ {{item.normalcost}}</span>
                                             </div>
                                             <div class="additional-add_action">
                                                 <ul>
@@ -1164,6 +1164,7 @@
             var r = window.location.search.substr(1).match(reg);
             if( r != null) {
                 var model = this.getData("model")
+                console.log(model)
                 if (model === "tag") {
                     this.userid = this.getData("userid");
                     this.label = this.getData("label");
@@ -1200,13 +1201,7 @@
                     console.log(this.label)
                     data.tagname = this.label
                     data.keyword = this.productname
-                    fetch('http://139.196.121.254:8091/api/book/search' ,{
-                        method: 'get',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
+                    fetch('http://139.196.121.254:8091/api/book/search?tagname='+data.tagname+"&keyword="+data.keyword)
                         .then(response => response.json())
                         .then(response => {
                             // data就是我们请求的repos

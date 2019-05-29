@@ -192,13 +192,14 @@
                 <hr width=100% size=40 color=#cda557 style="filter:alpha(opacity=100,finishopacity=0,style=2)">
                 <li>你的余额 :{{user.money}}</li>
                 <hr width=100% size=40 color=#cda557 style="filter:alpha(opacity=100,finishopacity=0,style=2)">
-<!--                <li>你的邮箱</li>-->
-<!--                <hr width=100% size=40 color=#cda557 style="filter:alpha(opacity=100,finishopacity=0,style=2)">-->
-<!--                <li>你的电话</li>-->
-<!--                <hr width=100% size=40 color=#cda557 style="filter:alpha(opacity=100,finishopacity=0,style=2)">-->
-                <div class="hiraola-btn-ps_right">
-                    <a href="javascript:void(0)" class="hiraola-btn hiraola-btn_dark" style="margin-left:16cm;">修改</a>
-                </div>
+                <!--                <li>你的邮箱</li>-->
+                <!--                <hr width=100% size=40 color=#cda557 style="filter:alpha(opacity=100,finishopacity=0,style=2)">-->
+                <!--                <li>你的电话</li>-->
+                <!--                <hr width=100% size=40 color=#cda557 style="filter:alpha(opacity=100,finishopacity=0,style=2)">-->
+
+                <el-button @click="submitbook()" style="margin-top:50px;margin-bottom:1cm;"
+                           size="medium" type="warning" flat>提交
+                </el-button>
             </ul>
         </div>
     </div>
@@ -238,9 +239,13 @@
                                                 <strong>{{item.book.title}}</strong>
                                                 <div style="margin-top: 20px">{{item.book.description}}</div>
                                                 <br>
-                                                <p style="color: #595959; font-weight:bold">原价：￥<span style="text-decoration: line-through">{{item.book.normalcost}}</span></p>
-                                                <p style="color: #595959; font-weight:bold">现价：￥<span>{{item.book.cost}}</span></p>
-                                                <p style="color: #595959; font-weight:bold">卖家ID：<span>{{item.solderid}}</span></p>
+                                                <p style="color: #595959; font-weight:bold">原价：￥<span
+                                                        style="text-decoration: line-through">{{item.book.normalcost}}</span>
+                                                </p>
+                                                <p style="color: #595959; font-weight:bold">
+                                                    现价：￥<span>{{item.book.cost}}</span></p>
+                                                <p style="color: #595959; font-weight:bold">
+                                                    卖家ID：<span>{{item.solderid}}</span></p>
                                             </div>
                                         </li>
                                     </ul>
@@ -255,32 +260,23 @@
                                 <div class="product-description" style="text-align: center">
                                     <div style="margin-bottom: 100px">
                                         <el-upload
-                                                :multiple="true"
+                                                action="http://139.196.121.254:8091/upload"
                                                 list-type="picture-card"
-                                                :auto-upload="false"
-                                                :http-request="uploadFile"
-                                                ref="upload"
+                                                accept="image/*"
+                                                :limit="imgLimit"
+                                                :file-list="productImgs"
                                                 :on-preview="handlePictureCardPreview"
-                                                :on-remove="handleRemove">
+                                                :on-remove="handleRemove"
+                                                :on-success="handleAvatarSuccess"
+                                                :before-upload="beforeAvatarUpload"
+                                                :on-exceed="handleExceed"
+                                                :on-error="imgUploadError">
                                             <i class="el-icon-plus"></i>
                                         </el-upload>
                                         <el-dialog :visible.sync="dialogVisible">
                                             <img width="100%" :src="dialogImageUrl" alt="">
                                         </el-dialog>
-<!--                                        <el-button @click="subPicForm">提交上传</el-button>-->
                                     </div>
-
-                                    <ul>
-                                        <!--                                        <li class="chart-message">-->
-                                        <!--                                            <div class="chartinfo">-->
-                                        <!--                                                <strong>《书籍名称》</strong>-->
-                                        <!--                                                <span>书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍.书籍的介绍</span>-->
-                                        <!--                                                <br><br>-->
-                                        <!--                                                <p style="color: #595959; font-weight:bold">价格：</p>-->
-                                        <!--                                                <p style="color: #595959; font-weight:bold">卖家：</p>-->
-                                        <!--                                                <p style="color: #595959; font-weight:bold">数量：</p>-->
-                                        <!--                                            </div>-->
-                                        <!--                                        </li>-->
                                         <el-form ref="form" :model="form" label-width="80px"
                                                  style="width: 600px;margin:0 auto">
                                             <el-form-item label="图书名称">
@@ -295,14 +291,29 @@
                                             <el-form-item label="数量">
                                                 <el-input v-model="form.num"></el-input>
                                             </el-form-item>
+                                            <el-form-item label="标签">
+                                                <el-tag
+                                                        :key="tag"
+                                                        v-for="tag in form.dynamicTags"
+                                                        closable
+                                                        :disable-transitions="false"
+                                                        @close="handleClose(tag)">
+                                                    {{tag}}
+                                                </el-tag>
+                                                <el-input
+                                                        class="input-new-tag"
+                                                        v-if="inputVisible"
+                                                        v-model="inputValue"
+                                                        ref="saveTagInput"
+                                                        size="small"
+                                                        @keyup.enter.native="handleInputConfirm"
+                                                        @blur="handleInputConfirm"
+                                                >
+                                                </el-input>
+                                                <el-button v-else class="button-new-tag" size="medium" @click="showInput">+ 新标签</el-button>
+                                            </el-form-item>
                                         </el-form>
-
-
-                                    </ul>
-                                    <div class="hiraola-btn-ps_right">
-                                        <a href="javascript:void(0)" class="hiraola-btn hiraola-btn_dark"
-                                           style="margin-left:22cm;">修改</a>
-                                    </div>
+                                    <el-button type="warning" size="medium" @click="submitbook">提交</el-button>
                                 </div>
                             </div>
                             <div id="history" class="tab-pane" role="tabpanel">
@@ -326,12 +337,12 @@
                                         >
                                         </el-table-column>
                                         <el-table-column
-                                            prop="user.name"
-                                            align="center"
-                                            label="买家姓名"
-                                            width="150"
-                                    >
-                                    </el-table-column>
+                                                prop="user.name"
+                                                align="center"
+                                                label="买家姓名"
+                                                width="150"
+                                        >
+                                        </el-table-column>
                                         <el-table-column
                                                 prop="solder.name"
                                                 align="center"
@@ -365,7 +376,8 @@
                                                 <!--                <el-tooltip class="item" effect="dark" content="只有异常指标会弹出数据显示哦~" placement="right">-->
                                                 <el-tag
                                                         :type="scope.row.forsure === true ? 'success' : 'danger'"
-                                                        disable-transitions @click="handleClickOnTag(scope)">{{scope.row.forsure === true ? '确认' : '未确认'}}
+                                                        disable-transitions @click="handleClickOnTag(scope)">
+                                                    {{scope.row.forsure === true ? '确认' : '未确认'}}
                                                 </el-tag>
                                                 <!--                </el-tooltip>-->
                                             </template>
@@ -376,10 +388,10 @@
                                             :visible.sync="dialogVisible"
                                             width="30%"
                                             :before-close="handleClose">
-                                            如果确认收货，那么资金将被打入卖家账户，您确认吗？
+                                        如果确认收货，那么资金将被打入卖家账户，您确认吗？
                                         <span slot="footer" class="dialog-footer">
                                 <el-button type="primary" @click="confirm()">确认</el-button>
-                                            <el-button  @click="dialogVisible = false">关闭</el-button>
+                                            <el-button @click="dialogVisible = false">关闭</el-button>
             </span>
                                     </el-dialog>
                                 </div>
@@ -604,96 +616,165 @@
     new Vue({
         el: '#app',
         data: {
-            addMoney:'',
-            formDate: "",
             dialogImageUrl: '',
             dialogVisible: false,
+            productImgs: [],
+            isMultiple: true,
+            imgLimit: 1,
+            addMoney: '',
+            formDate: "",
             cartData: [],
             form: {
+                dynamicTags:[],
                 name: '',
                 desc: '',
                 num: '',
                 price: ''
             },
-            user:'',
-            tableData: [{
-                reid:1,
-                bookid:3,
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄',
-                forsure:true,
-            }, {
-                reid:1,
-                bookid:3,
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄',
-                forsure:true,
-            }, {
-                reid:1,
-                bookid:3,
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄',
-                forsure:false,
-            }, {
-                reid:1,
-                bookid:3,
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄',
-                forsure:true,
-                dialogVisible:false,
-            }],
-            selectNow:'',
-            userid:'',
+            user: '',
+            tableData: [],
+            selectNow: '',
+            userid: '',
+            imageUrl:'',
+            inputVisible: false,
+            inputValue: '',
         },
         created() {
             this.userid = this.getData('userid')    //用户信息
-            fetch('http://139.196.121.254:8091/api/user/'+this.userid)
-                .then(response=>response.json())
-                .then(response=>{
+            fetch('http://139.196.121.254:8091/api/user/' + this.userid)
+                .then(response => response.json())
+                .then(response => {
                     console.log(response)
                     this.user = response;
                 })
-            fetch('http://139.196.121.254:8091/api/shop/user/'+this.userid)
-                .then(response=>response.json())
-                .then(response=>{
+            fetch('http://139.196.121.254:8091/api/shop/user/' + this.userid)
+                .then(response => response.json())
+                .then(response => {
                     var temp = response;
                     console.log(response)
-                    for(var i = 0;i<temp.length;i++){
-                        temp[i].selected= false;
-                        temp[i].image= this.ipaddress+temp[i].image;
+                    for (var i = 0; i < temp.length; i++) {
+                        temp[i].selected = false;
+                        temp[i].image = this.ipaddress + temp[i].image;
                     }
                     this.cartData = temp
                     console.log('cartData')
                     console.log(this.cartData)
                 })
-            fetch('http://139.196.121.254:8091/api/record/asbuyer/'+this.userid)
-                .then(response=>response.json())
-                .then(response=>{
+            fetch('http://139.196.121.254:8091/api/record/asbuyer/' + this.userid)
+                .then(response => response.json())
+                .then(response => {
                     console.log(response)
                     this.tableData = response
                 })
 
         },
         methods: {
-            addmoney(){
+            submitbook(){
+                var data = {}
+                data.solder = this.userid;
+                data.title = this.form.name;
+                data.cost = this.form.price;
+                data.normalcost = this.form.price;
+                data.description = this.form.desc;
+                data.image = this.imageUrl;
+                // var x = []
+                // for(var i =0 ;i<this.form.dynamicTags.length;i++){
+                //     x.push(this.form.dynamicTags[i])
+                // }
+                data.taglist = this.form.dynamicTags
+                console.log(data)
+                if(data.image != '' && data.title != '' && data.cost != '') {
+                    fetch('http://139.196.121.254:8091/api/book/create', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response=>response.json())
+                        .then(response=>{
+                            console.log(response)
+                            if(response.state === 'sueccess'){
+                                this.$message({
+                                    message: '上传成功',
+                                    type: 'success'
+                                });
+                            }
+                        })
+                }
+                else{
+                    this.$message.error("您必须填写完整信息")
+                }
+            },
+            handleClose(tag) {
+                this.form.dynamicTags.splice(this.form.dynamicTags.indexOf(tag), 1);
+            },
+
+            showInput() {
+                this.inputVisible = true;
+                this.$nextTick(_ => {
+                    this.$refs.saveTagInput.$refs.input.focus();
+                });
+            },
+
+            handleInputConfirm() {
+                let inputValue = this.inputValue;
+                if (inputValue) {
+                    this.form.dynamicTags.push(inputValue);
+                }
+                this.inputVisible = false;
+                this.inputValue = '';
+            },
+            handleRemove(file, fileList) {//移除图片
+            },
+            handlePictureCardPreview(file) {//预览图片时调用
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            },
+
+            beforeAvatarUpload(file) {//文件上传之前调用做一些拦截限制
+                console.log(file);
+                const isJPG = true;
+                // const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 1;
+
+                // if (!isJPG) {
+                //   this.$message.error('上传头像图片只能是 JPG 格式!');
+                // }
+                if (!isLt2M) {
+                    this.$message.error('上传图片大小不能超过 1MB!');
+                }
+                return isJPG && isLt2M;
+            },
+            handleAvatarSuccess(res, file) {//图片上传成功
+                console.log(res);
+                console.log("file")
+                console.log(file);
+                this.imageUrl = res.response;
+            },
+            handleExceed(files, fileList) {//图片上传超过数量限制
+                this.$message.error('上传图片不能超过1张!');
+                console.log(file, fileList);
+            },
+            imgUploadError(err, file, fileList) {//图片上传失败调用
+                console.log(err)
+                this.$message.error('上传图片失败!');
+            },
+            addmoney() {
                 console.log(this.user.username)
                 var data = {}
                 data.username = this.user.username;
                 data.money = this.addMoney;
-                fetch('http://139.196.121.254:8091/api/money/create',{
+                fetch('http://139.196.121.254:8091/api/money/create', {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
                 })
-                    .then(response=>response.json())
-                    .then(response=>{
-                        if(response.state === "success"){
+                    .then(response => response.json())
+                    .then(response => {
+                        if (response.state === "success") {
                             this.$message({
                                 message: '充值成功',
                                 type: 'success'
@@ -701,12 +782,12 @@
                         }
                     })
             },
-            getData(name){
+            getData(name) {
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                 var r = window.location.search.substr(1).match(reg);
                 return r[2]
             },
-            confirm(){
+            confirm() {
                 this.tableData[this.selectNow].forsure = true
                 var data = {}
                 data.reid = this.tableData[this.selectNow].reid
@@ -714,35 +795,34 @@
                 data.buyid = this.userid;
                 data.solderid = this.tableData[this.selectNow].solder.userid
                 console.log(data)
-                fetch('http://139.196.121.254:8091/api/record/sure',{
+                fetch('http://139.196.121.254:8091/api/record/sure', {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
                 })
-                    .then(response=>response.json())
-                    .then(response=>{
+                    .then(response => response.json())
+                    .then(response => {
                         console.log(response)
-                        if(response.state === "success"){
+                        if (response.state === "success") {
                             this.$message({
                                 message: '成功确认到货~',
                                 type: 'success'
                             });
-                        }
-                        else{
+                        } else {
                             this.$message.error(response.response)
                         }
                     })
                 this.dialogVisible = false
             },
-            handleClickOnTag(flag){
-                if(flag.row.forsure === false) {
+            handleClickOnTag(flag) {
+                if (flag.row.forsure === false) {
                     this.dialogVisible = true;
                     this.selectNow = flag.$index
                 }
             },
-            filterTag(value, row){
+            filterTag(value, row) {
                 return row.forsure === value;
             },
             choose(id) {
@@ -753,67 +833,41 @@
                     this.cartData[id].selected = true;
                 }
             },
-            uploadFile(file) {
-                this.formDate.append('file', file.file);
-            },
-            subPicForm() {
-                this.formDate = new FormData()
-                this.$refs.upload.submit();
-                this.formDate.append('WS_CODE', "12133");
-                let config = {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
+
+            buy() {
+                for (var i = 0; i < this.cartData.length; i++) {
+                    if (this.cartData[i].selected === true) {
+                        var temp = {}
+                        temp.bookid = this.cartData[i].book.bookid
+                        temp.address = '上海宝山区'
+                        temp.bookcost = this.cartData[i].book.cost
+                        temp.solderid = this.cartData[i].solderid
+                        temp.buyid = this.userid
+                        fetch('http://139.196.121.254:8091/api/record/create', {
+                            method: 'post',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(temp)
+                        })
+                            .then(response => response.json())
+                            .then(response => {
+                                if (response.state === 'error') {
+                                    this.$message.error(response.info)
+                                } else {
+                                    this.$message({
+                                        message: '购买成功',
+                                        type: 'success'
+                                    });
+                                }
+
+                            })
                     }
                 }
-                console.log(this.formDate)
-                axios.post("http://localhost:8090/testPicUpload", this.formDate, config).then(res => {
-                    console.log(res)
-                }).catch(res => {
-                    console.log(res)
-                })
-            },
-            buy(){
-              for(var i=0;i<this.cartData.length;i++){
-                  if(this.cartData[i].selected === true){
-                      var temp = {}
-                      temp.bookid = this.cartData[i].book.bookid
-                      temp.address='上海宝山区'
-                      temp.bookcost  = this.cartData[i].book.cost
-                      temp.solderid  = this.cartData[i].solderid
-                      temp.buyid = this.userid
-                      fetch('http://139.196.121.254:8091/api/record/create',{
-                          method: 'post',
-                          headers: {
-                              'Content-Type': 'application/json'
-                          },
-                          body: JSON.stringify(temp)
-                      })
-                          .then(response=>response.json())
-                          .then(response=>{
-                              if(response.state === 'error'){
-                                  this.$message.error(response.info)
-                              }
-                              else{
-                                  this.$message({
-                                      message: '购买成功',
-                                      type: 'success'
-                                  });
-                              }
-
-                          })
-                  }
-              }
             },
             jump() {
                 window.location.href = "list.html?name=liuziyi&age=28"
             },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
-            },
-            handlePictureCardPreview(file) {
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
-            }
         }
     })
 </script>
@@ -821,7 +875,21 @@
     .selected {
         background: rgba(255, 246, 144, 0.73);
     }
-
+    .el-tag + .el-tag {
+        margin-left: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-left: 10px;
+        vertical-align: bottom;
+    }
 </style>
 
 </body>
