@@ -326,9 +326,16 @@
                                         >
                                         </el-table-column>
                                         <el-table-column
-                                                prop="name"
+                                            prop="user.name"
+                                            align="center"
+                                            label="买家姓名"
+                                            width="150"
+                                    >
+                                    </el-table-column>
+                                        <el-table-column
+                                                prop="solder.name"
                                                 align="center"
-                                                label="姓名"
+                                                label="卖家姓名"
                                                 width="150"
                                         >
                                         </el-table-column>
@@ -386,7 +393,7 @@
                                     </tbody>
                                     <tbody>
                                     <tr>
-                                        <td>{{money}}</td>
+                                        <td>{{user.money}}</td>
                                         <td>RGB</td>
                                     </tr>
                                     </tbody>
@@ -397,13 +404,13 @@
                                     </tbody>
                                     <tbody>
                                     <tr>
-                                        <td>输入想要充值的金额：<input type="text"
+                                        <td>输入想要充值的金额：<input v-model="addMoney" type="text"
                                                              style="border-radius:6px;background-color: transparent;">
                                         </td>
                                         <td>
 
                                             <div class="hiraola-btn-ps_right">
-                                                <a href="javascript:void(0)"
+                                                <a @click="addmoney()"
                                                    class="hiraola-btn hiraola-btn_dark">确认充值</a>
                                             </div>
 
@@ -597,6 +604,7 @@
     new Vue({
         el: '#app',
         data: {
+            addMoney:'',
             formDate: "",
             dialogImageUrl: '',
             dialogVisible: false,
@@ -642,7 +650,7 @@
             userid:'',
         },
         created() {
-            this.userid = this.getData('userid')
+            this.userid = this.getData('userid')    //用户信息
             fetch('http://139.196.121.254:8091/api/user/'+this.userid)
                 .then(response=>response.json())
                 .then(response=>{
@@ -662,9 +670,37 @@
                     console.log('cartData')
                     console.log(this.cartData)
                 })
+            fetch('http://139.196.121.254:8091/api/record/asbuyer/'+this.userid)
+                .then(response=>response.json())
+                .then(response=>{
+                    console.log(response)
+                    this.tableData = response
+                })
 
         },
         methods: {
+            addmoney(){
+                console.log(this.user.username)
+                var data = {}
+                data.username = this.user.username;
+                data.money = this.addMoney;
+                fetch('http://139.196.121.254:8091/api/money/create',{
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        if(response.state === "success"){
+                            this.$message({
+                                message: '充值成功',
+                                type: 'success'
+                            });
+                        }
+                    })
+            },
             getData(name){
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                 var r = window.location.search.substr(1).match(reg);
@@ -674,7 +710,28 @@
                 this.tableData[this.selectNow].forsure = true
                 var data = {}
                 data.reid = this.tableData[this.selectNow].reid
-                //预留发送数据到后端 告知该商品已经确认到货
+                data.bookid = this.tableData[this.selectNow].bookid
+                data.buyid = this.userid;
+                data.solderid = this.tableData[this.selectNow].solderid
+                fetch('http://139.196.121.254:8091/api/record/sure',{
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response=>response.json())
+                    .then(response=>{
+                        if(response.state === "success"){
+                            this.$message({
+                                message: '购买成功',
+                                type: 'success'
+                            });
+                        }
+                        else{
+                            this.$message.error(response.response)
+                        }
+                    })
                 this.dialogVisible = false
             },
             handleClickOnTag(flag){
@@ -713,7 +770,38 @@
                     console.log(res)
                 })
             },
+            buy(){
+              for(var i=0;i<this.cartData.length;i++){
+                  if(this.cartData[i].selected === true){
+                      var temp = {}
+                      temp.bookid = this.cartData[i].book.bookid
+                      temp.address='上海宝山区'
+                      temp.bookcost  = this.cartData[i].book.cost
+                      temp.solderid  = this.cartData[i].solderid
+                      temp.buyid = this.userid
+                      fetch('http://139.196.121.254:8091/api/record/create',{
+                          method: 'post',
+                          headers: {
+                              'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify(temp)
+                      })
+                          .then(response=>response.json())
+                          .then(response=>{
+                              if(response.state === 'error'){
+                                  this.$message.error(response.info)
+                              }
+                              else{
+                                  this.$message({
+                                      message: '购买成功',
+                                      type: 'success'
+                                  });
+                              }
 
+                          })
+                  }
+              }
+            },
             jump() {
                 window.location.href = "list.html?name=liuziyi&age=28"
             },
