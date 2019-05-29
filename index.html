@@ -60,28 +60,7 @@
                 </div>
             </div>
         </div>
-        <!-- Loading Area End Here -->
-        <!-- Begin Hiraola's Newsletter Popup Area -->
-        <!--        <div class="popup_wrapper">-->
-        <!--            <div class="test">-->
-        <!--                <span class="popup_off"><i class="ion-android-close"></i></span>-->
-        <!--                <div class="subscribe_area text-center">-->
-        <!--                    <h2>Sign up for send newsletter?</h2>-->
-        <!--                    <p>Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive offers.</p>-->
-        <!--                    <div class="subscribe-form-group">-->
-        <!--                        <form action="#">-->
-        <!--                            <input autocomplete="off" type="text" name="message" id="message" placeholder="Enter your email address">-->
-        <!--                            <button type="submit">subscribe</button>-->
-        <!--                        </form>-->
-        <!--                    </div>-->
-        <!--                    <div class="subscribe-bottom">-->
-        <!--                        <input type="checkbox" id="newsletter-permission">-->
-        <!--                        <label for="newsletter-permission">Don't show this popup again</label>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!-- Hiraola's Newsletter Popup Area Here -->
+
 
         <!-- Begin Hiraola's Header Main Area -->
         <header class="header-main_area">
@@ -120,11 +99,11 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">我的登陆<i class="fa fa-chevron-down"></i></a>
+                                        <li><a href="#">我的登入<i class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown ht-my_account">
                                                 <li class="active"><a href="register-user.html">注册</a></li>
-                                                <li><a href="login-user.html">登陆</a></li>
-                                                <li><a href="login-admin.html">管理员登陆</a></li>
+                                                <li><a href="login-user.html">登入</a></li>
+                                                <li><a href="login-admin.html">管理员登入</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -856,7 +835,6 @@
 
 
         <!--第一个可选类别的首页展示页-->
-        <!-- Begin Hiraola's Product Tab Area -->
         <div class="hiraola-product-tab_area-2" style="margin-bottom: 100px">
             <div class="container">
                 <div class="row">
@@ -1225,19 +1203,19 @@
                                                         "asNavFor": ".sp-img_slider-nav"
                                                         }'>
                                     <div class="single-slide red">
-                                        <img src="assets/images/single-product/large-size/1.jpg"
+                                        <img src="assets/images/ImageNew/timg.jpg"
                                              alt="Hiraola's Product Image">
                                     </div>
                                     <div class="single-slide orange">
-                                        <img src="assets/images/single-product/large-size/2.jpg"
+                                        <img src="assets/images/ImageNew/timg.jpg"
                                              alt="Hiraola's Product Image">
                                     </div>
                                     <div class="single-slide brown">
-                                        <img src="assets/images/single-product/large-size/3.jpg"
+                                        <img src="assets/images/ImageNew/timg.jpg"
                                              alt="Hiraola's Product Image">
                                     </div>
                                     <div class="single-slide umber">
-                                        <img src="assets/images/single-product/large-size/4.jpg"
+                                        <img src="assets/images/ImageNew/timg.jpg"
                                              alt="Hiraola's Product Image">
                                     </div>
                                 </div>
@@ -1253,20 +1231,20 @@
                                                         {"breakpoint":321, "settings": {"slidesToShow": 2}}
                                                     ]'>
                                     <div class="single-slide red">
-                                        <img src="assets/images/single-product/small-size/1.jpg"
-                                             alt="Hiraola's Product Thumnail">
+                                        <img src="assets/images/ImageNew/timg.jpg"
+                                             alt="Hiraola's Product Image">
                                     </div>
                                     <div class="single-slide orange">
-                                        <img src="assets/images/single-product/small-size/2.jpg"
-                                             alt="Hiraola's Product Thumnail">
+                                        <img src="assets/images/ImageNew/timg.jpg"
+                                             alt="Hiraola's Product Image">
                                     </div>
                                     <div class="single-slide brown">
-                                        <img src="assets/images/single-product/small-size/3.jpg"
-                                             alt="Hiraola's Product Thumnail">
+                                        <img src="assets/images/ImageNew/timg.jpg"
+                                             alt="Hiraola's Product Image">
                                     </div>
                                     <div class="single-slide umber">
-                                        <img src="assets/images/single-product/small-size/4.jpg"
-                                             alt="Hiraola's Product Thumnail">
+                                        <img src="assets/images/ImageNew/timg.jpg"
+                                             alt="Hiraola's Product Image">
                                     </div>
                                 </div>
                             </div>
@@ -1535,7 +1513,7 @@
                     this.data2 = response
                     for(var i = 0;i<this.data2.length;i++){
                         this.data2[i].rate= Math.floor(Math.random() * 5) + 1;
-                        this.data2[i].image= this.ipaddress+this.data1[i].image;
+                        this.data2[i].image= this.ipaddress+this.data2[i].image;
                     }
 
                 })
@@ -1554,7 +1532,7 @@
                     this.data3 = response
                     for(var i = 0;i<this.data3.length;i++){
                         this.data3[i].rate= Math.floor(Math.random() * 5) + 1;
-                        this.data3[i].image= this.ipaddress+this.data1[i].image;
+                        this.data3[i].image= this.ipaddress+this.data3[i].image;
                     }
 
                 })
