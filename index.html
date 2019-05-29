@@ -1611,7 +1611,6 @@
                 window.location.href = "list.html?label="+tag+"&userid="+this.userid+"&model="+"tag";
             },
             addCart(bookid){
-                console.log('in the addCart')
                 var data={}
                 data.bookid = bookid;
                 data.userid = this.userid;
@@ -1634,10 +1633,7 @@
                     })
             },
             changeLike(dataname,id){
-                console.log(dataname)
                 if(dataname === "recommend") {
-                    console.log('in the commend')
-                    console.log(this.recommend.length)
                     for (var i = 0; i < this.recommend.length; i++) {
                         console.log(i)
                         console.log(this.recommend[i])
