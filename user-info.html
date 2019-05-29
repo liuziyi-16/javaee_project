@@ -712,7 +712,8 @@
                 data.reid = this.tableData[this.selectNow].reid
                 data.bookid = this.tableData[this.selectNow].bookid
                 data.buyid = this.userid;
-                data.solderid = this.tableData[this.selectNow].solderid
+                data.solderid = this.tableData[this.selectNow].solder.userid
+                console.log(data)
                 fetch('http://139.196.121.254:8091/api/record/sure',{
                     method: 'post',
                     headers: {
@@ -722,9 +723,10 @@
                 })
                     .then(response=>response.json())
                     .then(response=>{
+                        console.log(response)
                         if(response.state === "success"){
                             this.$message({
-                                message: '购买成功',
+                                message: '成功确认到货~',
                                 type: 'success'
                             });
                         }
