@@ -159,7 +159,7 @@
                         <div class="main-menu_area">
                             <nav>
                                 <ul>
-                                    <li><a href="index.html">主页</a></li>
+                                    <li><a @click="jumpindex">主页</a></li>
                                     <li><a @click="jump()">产品列表</a></li>
                                     <li><a @click="jumptoinfo()">个人信息</a></li>
                                 </ul>
@@ -664,17 +664,16 @@
                     <div class="shop-product-wrap grid gridview-3 row">
                         <div class="col-lg-4" v-for="item in bookData">
                             <div class="slide-item">
-                                <div class="single_product">
+                                <div class="single_product" style="height: 300px;margin-bottom: 20px">
                                     <div class="product-img">
                                         <a @click="JumpSingle(item.bookid)">
-                                            <img class="primary-img" src="assets/images/product/medium-size/1-9.jpg"
-                                                 alt="Hiraola's Product Image">
-                                            <img class="secondary-img" src="assets/images/product/medium-size/1-8.jpg"
-                                                 alt="Hiraola's Product Image">
+                                            <img class="primary-img"
+                                                 :src="item.image" style="width: 100%;height: 180px;margin-bottom: 20px ">
                                         </a>
+                                        <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                         <div class="add-actions">
                                             <ul>
-                                                <li><a class="hiraola-add_cart" @click="addCart(item.id)"
+                                                <li><a class="hiraola-add_cart" @click="addCart(item.bookid)"
                                                        data-toggle="tooltip"
                                                        data-placement="top" title="加入购物车"><i class="ion-bag"></i></a>
                                                 </li>
@@ -1104,6 +1103,7 @@
     new Vue({
         el: '#app',
         data: {
+            ipaddress:'http://139.196.121.254:8081/',
             label: '',
             productname: "",
             username: '',
@@ -1201,7 +1201,13 @@
                     console.log(this.label)
                     data.tagname = this.label
                     data.keyword = this.productname
-                    fetch('http://139.196.121.254:8091/api/book/search?tagname='+data.tagname+"&keyword="+data.keyword)
+                    fetch('http://139.196.121.254:8091/api/book/search',{
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
                         .then(response => response.json())
                         .then(response => {
                             // data就是我们请求的repos
@@ -1229,6 +1235,28 @@
             }
         },
         methods: {
+                addCart(bookid){
+                    var data={}
+                    data.bookid = bookid;
+                    data.userid = this.userid;
+                    fetch('http://139.196.121.254:8091/api/shop/create', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response=>response.json())
+                        .then(response=>{
+                            console.log(response)
+                            if(response.state === 'success'){
+                                this.$message({
+                                    message: '添加购物车成功',
+                                    type: 'success'
+                                });
+                            }
+                        })
+                },
             changeLike(id) {
                 for (var i = 0; i < this.bookData.length; i++) {
                     if (this.bookData[i].id === id && this.bookData[i].like === false) {
@@ -1241,7 +1269,7 @@
                 }
             },
             search() {
-                window.location.href = "list.html?label=" + this.value + "&text=" + this.selectValue + "&name=" + this.username + "&model=" + "tag&text";
+                window.location.href = "list.html?label=" + this.value + "&text=" + this.selectValue + "&userid=" + this.userid + "&model=" + "tag&text";
             },
             getData(name) {
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -1251,17 +1279,23 @@
             details: function () {
                 return this.site + " - 学的不仅是技术，更是梦想！";
             },
-            JumpSingle(productname) {
-                console.log(productname)
-                window.location.href = "single-product.html?name=liuziyi&productname=" + productname;
+            JumpSingle(bookid) {
+                window.location.href = "single-product.html?userid="+this.userid+"&bookid="+bookid;
             },
             changeList() {
                 console.log(this.selectVal)
             },
+            jumpindex(){
+                window.location.href = "index.html?userid="+this.userid
+            },
+            jumptoinfo(){
+                window.location.href = "user-info.html?userid="+this.userid;
+            },
             changePage(page) {
                 this.pageNow = page
+                console.log(page)
                 this.bookData = this.allData.slice(this.detailnum * (this.pageNow - 1), this.detailnum * this.pageNow)
-                if (this.pageNow < 4) {
+                if (this.pageNow <= 4) {
                     this.pageNum = [1, 2, 3, 4]
                 } else if (this.pageNow >= this.maxPage - 3) {
                     this.pageNum = [this.maxPage - 3, this.maxPage - 2, this.maxPage - 1, this.maxPage]
@@ -1271,7 +1305,11 @@
                         page.push(i)
                     }
                     console.log(page)
-                    this.pageNum = page
+                    if (this.pageNow <=4) {
+                        this.pageNum = [1, 2, 3, 4]
+                    }
+                    else{this.pageNum = page}
+
                 }
 
             },

@@ -690,10 +690,9 @@
                 <div class="sp-nav">
                     <div class="row">
                         <div class="col-lg-5 col-md-5">
-                            <div class="sp-img_area">
-                                <div class="zoompro-border">
-                                    <img class="zoompro" src="assets/images/single-product/large-size/1.jpg" data-zoom-image="assets/images/single-product/large-size/1.jpg" alt="Hiraola's Product Image" />
-                                </div>
+                            <div class="sp-img_area" style="text-align: center">
+                                    <img :src="bookData.image" style="height: 400px;width: 300px"/>
+
 <!--                                <div id="gallery" class="sp-img_slider">-->
 <!--                                    <a class="active" data-image="assets/images/single-product/large-size/1.jpg" data-zoom-image="assets/images/single-product/large-size/1.jpg">-->
 <!--                                        <img src="assets/images/single-product/small-size/1.jpg" alt="Hiraola's Product Image">-->
@@ -943,72 +942,72 @@
 
 <!--        相关推荐-->
         <!-- Begin Hiraola's Product Area Two -->
-        <div class="hiraola-product_area hiraola-product_area-2 section-space_add">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
+<!--        <div class="hiraola-product_area hiraola-product_area-2 section-space_add">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
 
 
-                        <div class="hiraola-section_title">
-                            <h4>相关推荐</h4>
-                        </div>
+<!--                        <div class="hiraola-section_title">-->
+<!--                            <h4>相关推荐</h4>-->
+<!--                        </div>-->
 
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="hiraola-product_slider-3">
-
-
-                            <!-- Begin Hiraola's Slide Item Area -->
-                            <div class="slide-item" v-for="item in productData.relatedData">
-                                <div class="single_product">
-                                    <div class="product-img">
-                                        <a @click="Jump(item.test)">
-                                            <img class="primary-img" src="assets/images/product/medium-size/1-9.jpg" alt="Hiraola's Product Image">
-                                            <img class="secondary-img" src="assets/images/product/medium-size/1-1.jpg" alt="Hiraola's Product Image">
-                                        </a>
-                                        <span class="sticker-2">Sale</span>
-                                        <div class="add-actions">
-                                            <ul>
-                                                <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="ion-bag"></i></a></li>
-                                                <li><a class="hiraola-add_compare" href="#" data-toggle="tooltip" data-placement="top" title="Compare This Product"><i
-                                                        class="ion-ios-shuffle-strong"></i></a></li>
-                                                <li class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="ion-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="hiraola-product_content">
-                                        <div class="product-desc_info">
-                                            <h6><a class="product-name" href="#">{{item.test}}</a></h6>
-                                            <div class="price-box">
-                                                <span class="new-price">£1199.60</span>
-                                            </div>
-                                            <div class="additional-add_action">
-                                                <ul>
-                                                    <li><a class="hiraola-add_compare" href="#" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
-                                                            class="ion-android-favorite-outline"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="rating-box">
-                                                <ul>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li><i class="fa fa-star-of-david"></i></li>
-                                                    <li class="silver-color"><i class="fa fa-star-of-david"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                    </div>-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <div class="hiraola-product_slider-3">-->
 
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                            &lt;!&ndash; Begin Hiraola's Slide Item Area &ndash;&gt;-->
+<!--                            <div class="slide-item" v-for="item in productData.relatedData">-->
+<!--                                <div class="single_product">-->
+<!--                                    <div class="product-img">-->
+<!--                                        <a @click="Jump(item.test)">-->
+<!--                                            <img class="primary-img" src="assets/images/product/medium-size/1-9.jpg" alt="Hiraola's Product Image">-->
+<!--                                            <img class="secondary-img" src="assets/images/product/medium-size/1-1.jpg" alt="Hiraola's Product Image">-->
+<!--                                        </a>-->
+<!--                                        <span class="sticker-2">Sale</span>-->
+<!--                                        <div class="add-actions">-->
+<!--                                            <ul>-->
+<!--                                                <li><a class="hiraola-add_cart" href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="ion-bag"></i></a></li>-->
+<!--                                                <li><a class="hiraola-add_compare" href="#" data-toggle="tooltip" data-placement="top" title="Compare This Product"><i-->
+<!--                                                        class="ion-ios-shuffle-strong"></i></a></li>-->
+<!--                                                <li class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><a href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="ion-eye"></i></a></li>-->
+<!--                                            </ul>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="hiraola-product_content">-->
+<!--                                        <div class="product-desc_info">-->
+<!--                                            <h6><a class="product-name" href="#">{{item.test}}</a></h6>-->
+<!--                                            <div class="price-box">-->
+<!--                                                <span class="new-price">£1199.60</span>-->
+<!--                                            </div>-->
+<!--                                            <div class="additional-add_action">-->
+<!--                                                <ul>-->
+<!--                                                    <li><a class="hiraola-add_compare" href="#" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i-->
+<!--                                                            class="ion-android-favorite-outline"></i></a>-->
+<!--                                                    </li>-->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                            <div class="rating-box">-->
+<!--                                                <ul>-->
+<!--                                                    <li><i class="fa fa-star-of-david"></i></li>-->
+<!--                                                    <li><i class="fa fa-star-of-david"></i></li>-->
+<!--                                                    <li><i class="fa fa-star-of-david"></i></li>-->
+<!--                                                    <li><i class="fa fa-star-of-david"></i></li>-->
+<!--                                                    <li class="silver-color"><i class="fa fa-star-of-david"></i></li>-->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <!-- Hiraola's Product Area Two End Here -->
 
 
@@ -1342,9 +1341,7 @@
             data: {
                 bookData:'',
                 productData:{
-                    productId:"211",
-                    name:"计算科学与技术",
-                    imgurl:"",
+                    ipaddress:'http://139.196.121.254:8081/',
                     relatedData:[
                         {
                             test:"abc",
@@ -1365,18 +1362,22 @@
 
             },
             created() {
-            },
-            mounted(){
-                this.userid = this.getData("name");
+                this.userid = this.getData("userid");
                 this.bookid = this.getData("bookid")
                 fetch('http://139.196.121.254:8091/api/book/'+this.bookid)
                     .then(response=>response.json())
                     .then(response=>{
+                        console.log(response)
                         this.bookData = response
-                })
+                        this.bookData.image = 'http://139.196.121.254:8081/'+this.bookData.image;
+                        console.log(this.bookData.image)
+                    })
+            },
+            mounted(){
             },
             methods: {
                 getData(name){
+                    console.log(window.location)
                     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                     var r = window.location.search.substr(1).match(reg);
                     return r[2]
@@ -1416,7 +1417,7 @@
                     data.id = this.productData.productId;
                 },
                 Jump(data){
-                    window.location.href = "single-product.html?name="+this.username+"&productname="+data;
+                    window.location.href = "single-product.html?name="+this.userid+"&productname="+data;
                 },
 
             }

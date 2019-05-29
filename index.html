@@ -772,11 +772,11 @@
                         <div class="hiraola-product_slider">
                             <!-- Begin Hiraola's Slide Item Area -->
                             <div class="slide-item" v-for="item in recommend">
-                                <div class="single_product">
+                                <div class="single_product" style="height: 300px;margin-bottom: 20px">
                                     <div class="product-img">
                                         <a @click="JumpSingle(item.bookid)">
                                             <img class="primary-img"
-                                                 :src="item.image">
+                                                 :src="item.image" style="width: 100%;height: 180px;margin-bottom: 20px ">
                                         </a>
                                         <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                         <div class="add-actions">
@@ -877,12 +877,11 @@
                             <div id="necklaces" class="tab-pane active show" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
                                     <div class="slide-item" v-for="item in data1">
-                                        <div class="single_product">
+                                        <div class="single_product" style="height: 300px;margin-bottom: 20px">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                         :src="item.image"
-                                                         alt="Hiraola's Product Image">
+                                                         :src="item.image" style="width: 100%;height: 180px;margin-bottom: 20px ">
                                                 </a>
                                                 <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
@@ -935,11 +934,11 @@
                             <div id="earrings" class="tab-pane" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
                                     <div class="slide-item" v-for="item in data2">
-                                        <div class="single_product">
+                                        <div class="single_product" style="height: 300px;margin-bottom: 20px">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                         :src="item.image">
+                                                         :src="item.image" style="width: 100%;height: 180px;margin-bottom: 20px ">
                                                 </a>
                                                 <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
@@ -992,11 +991,11 @@
                             <div id="bracelet" class="tab-pane" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
                                     <div class="slide-item" v-for="item in data3">
-                                        <div class="single_product">
+                                        <div class="single_product" style="height: 300px;margin-bottom: 20px">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                                                :src="item.image">
+                                                         :src="item.image" style="width: 100%;height: 180px;margin-bottom: 20px ">
                                                 </a>
                                                 <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
@@ -1049,11 +1048,11 @@
                             <div id="anklet" class="tab-pane" role="tabpanel">
                                 <div class="hiraola-product-tab_slider-2">
                                     <div class="slide-item" v-for="item in data4">
-                                        <div class="single_product">
+                                        <div class="single_product" style="height: 300px;margin-bottom: 20px">
                                             <div class="product-img">
                                                 <a @click="JumpSingle(item.bookid)">
                                                     <img class="primary-img"
-                                                         :src="item.image">
+                                                         :src="item.image" style="width: 100%;height: 180px;margin-bottom: 20px ">
                                                 </a>
                                                 <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
                                                 <div class="add-actions">
@@ -1651,7 +1650,7 @@
                 }
             },
             JumpSingle(bookid){
-                window.location.href = "single-product.html?name="+this.userid+"&bookid="+bookid;
+                window.location.href = "single-product.html?userid="+this.userid+"&bookid="+bookid;
             },
             jump() {
                 window.location.href = "list.html?name=liuziyi&age=28"
