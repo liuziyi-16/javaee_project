@@ -674,10 +674,10 @@
         <div class="breadcrumb-area">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Single Product Type</h2>
+                    <h2>书籍详情</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Single Product</li>
+                        <li><a href="index.html">主页</a></li>
+                        <li class="active">书籍详情</li>
                     </ul>
                 </div>
             </div>
@@ -767,7 +767,7 @@
                                 </div>
                                 <div class="hiraola-tag-line">
                                     <h6>标签:</h6>
-                                    <a v-for="item in bookData.tagList"><el-tag>{{item.tagname}}</el-tag></a>
+                                    <a v-for="item in bookData.tagList"><el-tag @click="gotolist(item.tagname)">{{item.tagname}}</el-tag></a>
                                 </div>
                                 <div class="hiraola-social_link">
                                     <ul>
@@ -1376,6 +1376,9 @@
             mounted(){
             },
             methods: {
+                jumptoinfo(){
+                    window.location.href = "user-info.html?userid="+this.userid;
+                },
                 getData(name){
                     console.log(window.location)
                     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -1415,6 +1418,9 @@
                 addWishlist(){
                     var data = {}
                     data.id = this.productData.productId;
+                },
+                gotolist(tag){
+                    window.location.href = "list.html?label="+tag+"&userid="+this.userid+"&model="+"tag";
                 },
                 Jump(data){
                     window.location.href = "single-product.html?name="+this.userid+"&productname="+data;

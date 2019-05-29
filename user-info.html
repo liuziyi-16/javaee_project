@@ -287,8 +287,8 @@
                                             <el-form-item label="价格">
                                                 <el-input v-model="form.price"></el-input>
                                             </el-form-item>
-                                            <el-form-item label="数量">
-                                                <el-input v-model="form.num"></el-input>
+                                            <el-form-item label="原价">
+                                                <el-input v-model="form.normal"></el-input>
                                             </el-form-item>
                                             <el-form-item label="标签">
                                                 <el-tag
@@ -628,7 +628,7 @@
                 dynamicTags:[],
                 name: '',
                 desc: '',
-                num: '',
+                normal: '',
                 price: ''
             },
             user: '',
@@ -674,7 +674,7 @@
                 data.solder = this.userid;
                 data.title = this.form.name;
                 data.cost = this.form.price;
-                data.normalcost = this.form.price;
+                data.normalcost = this.form.normal;
                 data.description = this.form.desc;
                 data.image = this.imageUrl;
                 // var x = []

@@ -131,7 +131,7 @@
                             <form action="#" class="hm-searchbox">
                                 <el-select v-model="value" placeholder="请选择">
                                     <el-option
-                                            v-for="item in options"
+                                            v-for="item in options1"
                                             :key="item.value"
                                             :label="item.label"
                                             :value="item.value">
@@ -653,7 +653,7 @@
                                 <label class="select-label">排序方式:</label>
                                 <el-select v-model="selectVal">
                                     <el-option v-for="item in options"
-                                               :key="item.value"
+                                               :key="item.name"
                                                :label="item.name"
                                                :value="item.value">
                                     </el-option>
@@ -1136,9 +1136,8 @@
                     name: '最高评分',
                     value: 4
                 },
-
             ],
-            options: [{
+            options1: [{
                 value: '计算机',
                 label: '计算机'
             }, {
