@@ -333,7 +333,9 @@
                                             <td>
 
                                                 <div class="hiraola-btn-ps_right">
-                                                    <a @click="addMoney()" class="hiraola-btn hiraola-btn_dark">确认充值</a>
+                                                    <el-button @click="addMoney()"
+                                                               size="medium" type="warning" flat>确认充值
+                                                    </el-button>
                                                 </div>
 
                                             </td>
@@ -349,8 +351,9 @@
                                         <label class="label-input">输入用户的ID </label>
                                         <input v-model="checkhistoryid" type="text" class="input-group-text">
                                         <div class="hiraola-btn-ps_right">
-                                            <a @click="checkhistory()" class="hiraola-btn hiraola-btn_dark"
-                                               style="margin-left:22cm;margin-bottom:1cm;">查询</a>
+                                            <el-button @click="checkhistory()" style="margin-left:22cm;margin-bottom:1cm;"
+                                                       size="medium" type="warning" flat>查询
+                                            </el-button>
                                         </div>
                                     </div>
 
