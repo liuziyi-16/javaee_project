@@ -3009,7 +3009,7 @@ button.li-btn:hover {
 .bg-1,
 .bg-2,
 .bg-3 {
-  background-image: url("../images/slider/1.jpg");
+  background-image: url("../images/breadcrumb/4.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -3025,16 +3025,16 @@ button.li-btn:hover {
 }
 
 .bg-2 {
-  background-image: url("../images/slider/2.jpg");
+  background-image: url("../images/breadcrumb/4.jpg");
 }
 
 .bg-3 {
-  background-image: url("../images/slider/3.jpg");
+  background-image: url("../images/breadcrumb/4.jpg");
 }
 
 .bg-4,
 .bg-5 {
-  background-image: url("../images/slider/4.jpg");
+  background-image: url("../images/breadcrumb/4.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -3056,7 +3056,7 @@ button.li-btn:hover {
 }
 
 .bg-5 {
-  background-image: url("../images/slider/5.jpg");
+  background-image: url("../images/breadcrumb/4.jpg");
 }
 
 /* ---Hiraola's Slider Progress Bar--- */
@@ -4309,7 +4309,7 @@ button.li-btn:hover {
 }
 
 .static-banner_area .static-banner-image {
-  background-image: url("../images/banner/static-banner.png");
+  background-image: url("../images/breadcrumb/3.jpg");
   background-size: cover;
   min-height: 345px;
   background-repeat: no-repeat;

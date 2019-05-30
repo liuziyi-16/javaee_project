@@ -652,12 +652,12 @@
                                 <div class="single-slide animation-style-01 bg-1">
                                     <div class="container">
                                         <div class="slider-content">
-                                            <h5><span>Black Friday</span> This Week</h5>
-                                            <h2>Work Desk</h2>
-                                            <h3>Surface Studio 2019</h3>
-                                            <h4>Starting at <span>£1599.00</span></h4>
+                                            <h5><strong style="color:white;font-size:30px">黑色星期五</strong> 就在这周</h5>
+<!--                                            <h2>Work Desk</h2>-->
+<!--                                            <h3>Surface Studio 2019</h3>-->
+                                            <h4>全场<span style="color:black">8折起</span></h4>
                                             <div class="hiraola-btn-ps_left slide-btn">
-                                                <a class="hiraola-btn" href="#">Shopping Now</a>
+                                                <a class="hiraola-btn" href="#">现在就来购物吧！</a>
                                             </div>
                                         </div>
                                         <div class="slider-progress"></div>
@@ -817,13 +817,13 @@
                     <div class="col-lg-12">
                         <div class="static-banner-image"></div>
                         <div class="static-banner-content">
-                            <p><span>-25% Off</span>This Week</p>
-                            <h2>Featured Product</h2>
-                            <h3>Meito Accessories 2019</h3>
-                            <p class="schedule">
-                                Starting at
-                                <span> £1209.00</span>
-                            </p>
+                            <p>这周 <span style="font-size:30px">全场8折</span></p>
+                            <h2>所有类别图书</h2>
+<!--                            <h3>Meito Accessories 2019</h3>-->
+<!--                            <p class="schedule">-->
+<!--                                Starting at-->
+<!--                                <span> £1209.00</span>-->
+<!--                            </p>-->
                             <div class="hiraola-btn-ps_left">
                                 <a href="#" class="hiraola-btn">Shopping Now</a>
                             </div>
@@ -847,7 +847,7 @@
                                 <li><a class="active" data-toggle="tab" href="#necklaces"><span>计算机</span></a></li>
                                 <li><a data-toggle="tab" href="#earrings"><span>通信</span></a></li>
                                 <li><a data-toggle="tab" href="#bracelet"><span>机械</span></a></li>
-                                <li><a data-toggle="tab" href="#anklet"><span>数学</span></a></li>
+<!--                                <li><a data-toggle="tab" href="#anklet"><span>数学</span></a></li>-->
                             </ul>
                         </div>
                         <div class="tab-content hiraola-tab_content">
@@ -1023,62 +1023,62 @@
                                 </div>
                             </div>
 <!--                                                    通信-->
-                            <div id="anklet" class="tab-pane" role="tabpanel">
-                                <div class="hiraola-product-tab_slider-2">
-                                    <div class="slide-item" v-for="item in data4">
-                                        <div class="single_product" style="height: 350px;margin-bottom: 20px">
-                                            <div class="product-img">
-                                                <a @click="JumpSingle(item.bookid)">
-                                                    <img class="primary-img"
-                                                         :src="item.image" style="width: 100%;height: 230px;margin-bottom: 20px ">
-                                                </a>
-                                                <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>
-                                                <div class="add-actions">
-                                                    <ul>
-                                                        <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"
-                                                               data-placement="top" title="添加购物车"><i
-                                                                class="ion-bag"></i></a></li>
-                                                        <li><a class="hiraola-add_compare" href="#"
-                                                               data-toggle="tooltip"
-                                                               data-placement="top" title="商品对比"><i
-                                                                class="ion-ios-shuffle-strong"></i></a></li>
-                                                        <li class="quick-view-btn" data-toggle="modal"
-                                                            data-target="#exampleModalCenter"><a
-                                                                href="javascript:void(0)"
-                                                                data-toggle="tooltip"
-                                                                data-placement="top"
-                                                                title="快速预览"><i
-                                                                class="ion-eye"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="hiraola-product_content">
-                                                <div class="product-desc_info">
-                                                    <h6><a class="product-name" href="#">{{item.title}}</a></h6>
-                                                    <div class="price-box">
-                                                        <span class="old-price">￥ {{item.normalcost}}</span>
-                                                        <span class="new-price">￥ {{item.cost}}</span>
-                                                    </div>
-                                                    <div class="additional-add_action">
-                                                        <ul>
-                                                            <li><a @click="changeLike('data4',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"
-                                                                   data-placement="top" title="收藏"><i
-                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="rating-box">
-                                                        <ul>
-                                                            <li style="margin-right: 0;" v-for="i in item.rate"><i class="fa fa-star-of-david" style="margin-right: 5px"></i></li>
-                                                            <li v-for="i in 5-item.rate" class="silver-color"><i class="fa fa-star-of-david" style="margin-right: 5px;margin-left: 0;" ></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div id="anklet" class="tab-pane" role="tabpanel">-->
+<!--                                <div class="hiraola-product-tab_slider-2">-->
+<!--                                    <div class="slide-item" v-for="item in data4">-->
+<!--                                        <div class="single_product" style="height: 350px;margin-bottom: 20px">-->
+<!--                                            <div class="product-img">-->
+<!--                                                <a @click="JumpSingle(item.bookid)">-->
+<!--                                                    <img class="primary-img"-->
+<!--                                                         :src="item.image" style="width: 100%;height: 230px;margin-bottom: 20px ">-->
+<!--                                                </a>-->
+<!--                                                <span class="sticker">{{item.soldenable === false ? "在售":"停止销售"}}</span>-->
+<!--                                                <div class="add-actions">-->
+<!--                                                    <ul>-->
+<!--                                                        <li><a class="hiraola-add_cart" @click="addCart(item.bookid)" data-toggle="tooltip"-->
+<!--                                                               data-placement="top" title="添加购物车"><i-->
+<!--                                                                class="ion-bag"></i></a></li>-->
+<!--                                                        <li><a class="hiraola-add_compare" href="#"-->
+<!--                                                               data-toggle="tooltip"-->
+<!--                                                               data-placement="top" title="商品对比"><i-->
+<!--                                                                class="ion-ios-shuffle-strong"></i></a></li>-->
+<!--                                                        <li class="quick-view-btn" data-toggle="modal"-->
+<!--                                                            data-target="#exampleModalCenter"><a-->
+<!--                                                                href="javascript:void(0)"-->
+<!--                                                                data-toggle="tooltip"-->
+<!--                                                                data-placement="top"-->
+<!--                                                                title="快速预览"><i-->
+<!--                                                                class="ion-eye"></i></a></li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="hiraola-product_content">-->
+<!--                                                <div class="product-desc_info">-->
+<!--                                                    <h6><a class="product-name" href="#">{{item.title}}</a></h6>-->
+<!--                                                    <div class="price-box">-->
+<!--                                                        <span class="old-price">￥ {{item.normalcost}}</span>-->
+<!--                                                        <span class="new-price">￥ {{item.cost}}</span>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="additional-add_action">-->
+<!--                                                        <ul>-->
+<!--                                                            <li><a @click="changeLike('data4',item.bookid)" class="hiraola-add_compare" data-toggle="tooltip"-->
+<!--                                                                   data-placement="top" title="收藏"><i-->
+<!--                                                                    :class="{'ion-android-favorite':item.like,'ion-android-favorite-outline':!item.like}"></i></a>-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="rating-box">-->
+<!--                                                        <ul>-->
+<!--                                                            <li style="margin-right: 0;" v-for="i in item.rate"><i class="fa fa-star-of-david" style="margin-right: 5px"></i></li>-->
+<!--                                                            <li v-for="i in 5-item.rate" class="silver-color"><i class="fa fa-star-of-david" style="margin-right: 5px;margin-left: 0;" ></i></li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
